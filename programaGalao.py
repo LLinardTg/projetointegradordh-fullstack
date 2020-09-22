@@ -35,7 +35,7 @@ while True:
 #cacula todas as combinações possiveis entre as entradas, calcula a soma entre elas e o resto e salva em um dicionario
 d=dict()
 for i in range(1,len(garrafas)+1):
-    for c in n_length_combo(garrafas,i):
+    for c in createCombinations(garrafas,i):
         if(galao-sum(c)<=0):
             d[tuple(c)]=galao-sum(c)
 
