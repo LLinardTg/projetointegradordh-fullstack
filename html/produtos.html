@@ -12,7 +12,15 @@
 </head>
 
 <body>
-    <header>header</header>
+    <div class="header">
+
+        <input type="text" id="barra-procurar" name="barra-procurar" placeholder="O QUE PROCURA?">
+
+        <a href="#carrinho"><img id="carrinho" src="./img/carrinho.png"></a>
+        <a href="#procurar"><img id="botao-procurar" src="./img/procurar.png"></a>
+        <a href="#home"><img id="logo" src="./img/logo.png"></a>
+        <a href="#menu"><img id="menu" src="./img/menu.png"></a>
+    </div>
     <main>
         <div class="Sidebar">
             <a href="javascript:void(0)" class="closebtn" id="closeside" onclick="closeNav()">&times;</a>
@@ -181,7 +189,22 @@
             </div>
     </main>
 
-    <footer>footer</footer>
+    <div class="footer">
+
+        <div id="titulo-site-footer">
+            <span>devHouse</span>
+        </div>
+
+        <div id="endereco-site-footer">
+            <span>DigitalHouse<br/>Rua Digital, Looping sem fim.</span>
+        </div>
+
+
+        <div id="copy-site-footer">
+            <span>Copyright © 2020 devHouse. Todos os direitos reservados.</span>
+        </div>
+
+    </div>
 </body>
 <script>
     document.getElementById("Sidebar_open").addEventListener("click", function() {
