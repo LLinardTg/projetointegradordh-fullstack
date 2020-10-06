@@ -5,14 +5,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- O titulo ficara dinamico dependendo da Categoria selecionada -->
-    <link rel="stylesheet" href="categorias.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/categorias.css">
     <title>Categoria selecionada</title>
 </head>
 
 <body>
-    <header>header</header>
+    <div class="header">
+
+        <input type="text" id="barra-procurar" name="barra-procurar" placeholder="O QUE PROCURA?">
+
+        <a href="#carrinho"><img id="carrinho" src="./img/carrinho.png"></a>
+        <a href="#procurar"><img id="botao-procurar" src="./img/procurar.png"></a>
+        <a href="#home"><img id="logo" src="./img/logo.png"></a>
+        <a href="#menu"><img id="menu" src="./img/menu.png"></a>
+    </div>
+
+
     <main>
+
         <div class="Sidebar">
+            <a href="javascript:void(0)" class="closebtn" id="closeside" onclick="closeNav()">&times;</a>
             <h4>Categorias:</h4>
             <button class="Sidebar_button">Canecas Frases</button>
             <button class="Sidebar_button">Canecas de Linguagens</button>
@@ -93,6 +106,7 @@
 
         </div>
         <div class="Produtos">
+
             <div class="Produtos_header">
                 <h1 class="Produtos_header_titulo">Canecas</h1>
                 <div class="Produtos_header_ordem">
@@ -103,48 +117,96 @@
                         <option value="maior">Maior preço</option>
                         <option value="menor">Menor preço</option>
                     </select>
+                    <button id="Sidebar_open" class="Sidebar_open">Filtrar</button>
                 </div>
             </div>
             <div class="Produtos_galeria">
                 <article class="Produtos_produto">
-                    <img class="Produtos_produto_img" src="images/caneca1.jpg" alt="caneca_1">
+                    <img class="Produtos_produto_img" src="img/produtos/caneca1.jpg" alt="caneca_1">
                     <div class="Produtos_produto_name">Caneca 1</div>
                     <div class="Produtos_produto_name">R$30,00</div>
                     <button class="Produtos_produto_button">Adicionar ao carrinho</button>
                     <button class="Produtos_produto_button">Ver mais</button>
                 </article>
                 <article class="Produtos_produto">
-                    <img class="Produtos_produto_img" src="images/caneca2.jpg" alt="caneca_1">
+                    <img class="Produtos_produto_img" src="img/produtos/caneca2.jpg" alt="caneca_1">
                     <div class="Produtos_produto_name">Caneca 2</div>
                     <div class="Produtos_produto_name">R$30,00</div>
                     <button class="Produtos_produto_button">Adicionar ao carrinho</button>
                     <button class="Produtos_produto_button">Ver mais</button>
                 </article>
                 <article class="Produtos_produto">
-                    <img class="Produtos_produto_img" src="images/caneca3.jpg" alt="caneca_1">
+                    <img class="Produtos_produto_img" src="img/produtos/caneca3.jpg" alt="caneca_1">
                     <div class="Produtos_produto_name">Caneca 3</div>
                     <div class="Produtos_produto_name">R$30,00</div>
                     <button class="Produtos_produto_button">Adicionar ao carrinho</button>
                     <button class="Produtos_produto_button">Ver mais</button>
                 </article>
                 <article class="Produtos_produto">
-                    <img class="Produtos_produto_img" src="images/caneca4.jpg" alt="caneca_1">
+                    <img class="Produtos_produto_img" src="img/produtos/caneca4.jpg" alt="caneca_1">
                     <div class="Produtos_produto_name">Caneca 4</div>
                     <div class="Produtos_produto_name">R$30,00</div>
                     <button class="Produtos_produto_button">Adicionar ao carrinho</button>
                     <button class="Produtos_produto_button">Ver mais</button>
                 </article>
                 <article class="Produtos_produto">
-                    <img class="Produtos_produto_img" src="images/caneca5.jpg" alt="caneca_1">
+                    <img class="Produtos_produto_img" src="img/produtos/caneca5.jpg" alt="caneca_1">
                     <div class="Produtos_produto_name">Caneca 5</div>
                     <div class="Produtos_produto_name">R$30,00</div>
                     <button class="Produtos_produto_button">Adicionar ao carrinho</button>
                     <button class="Produtos_produto_button">Ver mais</button>
                 </article>
+
+            </div>
+            <div class="Produtos_pagination">
+                <a class="Produtos_pagination_point" href="#">❮</a>
+                <a href="#">1</a>
+                <a href="#" class="active">2</a>
+                <a href="#">3</a>
+                <a href="#">4</a>
+                <a href="#">5</a>
+                <a href="#">6</a>
+                <a class="Produtos_pagination_pointend" href="#">❯</a>
             </div>
     </main>
-    <footer>footer</footer>
+    <div class="footer">
+
+        <div id="titulo-site-footer">
+            <span>devHouse</span>
+        </div>
+
+        <div id="endereco-site-footer">
+            <span>DigitalHouse<br/>Rua Digital, Looping sem fim.</span>
+        </div>
+
+
+        <div id="copy-site-footer">
+            <span>Copyright © 2020 devHouse. Todos os direitos reservados.</span>
+        </div>
+
+    </div>
 
 </body>
+<script>
+    document.getElementById("Sidebar_open").addEventListener("click", function() {
+        document.getElementsByClassName("Sidebar")[0].style.display = ""
+        document.getElementsByClassName("Produtos")[0].style.display = "none"
+
+    })
+
+    document.getElementById("closeside").addEventListener("click", function() {
+        document.getElementsByClassName("Produtos")[0].style.display = ""
+        document.getElementsByClassName("Sidebar")[0].style.display = "none"
+    });
+
+    if (window.matchMedia("(max-width: 600px)").matches) {
+        /* The viewport is less than, or equal to, 700 pixels wide */
+        document.getElementsByClassName("Sidebar")[0].style.display = "none"
+
+    } else {
+        /* The viewport is greater than 700 pixels wide */
+        document.getElementsByClassName("Sidebar")[0].style.display = ""
+    }
+</script>
 
 </html>
