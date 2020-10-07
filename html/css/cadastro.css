@@ -1,0 +1,100 @@
+.titulo{
+	text-transform: uppercase;
+	color:#FFFFFF;
+	text-align: center;
+	background-color: #0A4092;
+	height: 35px;
+	font-size: 1.5rem;
+	border-radius: 8px;
+	opacity: 0.8;
+	
+}
+
+#form-login {
+	width: 480px;
+	margin: 5vh auto 0 auto;
+	background-color:#FFFFFF;
+	color: #52545E;
+	padding: 50px;
+}
+
+#form-login label:not(.sexo) {
+	display: block;
+	margin-bottom: 20px;
+}
+
+#form-login label input:not(.sexo){
+	display: inline-block;
+	padding: 5px;
+	border-color: #0A4092;
+	margin-top: 10px;
+	border-radius: 8px;
+	width: 97%;
+}	
+
+#form-login label div:not(.sexo){
+	width: 100%;
+	display: block;
+	font-size: 1rem;
+	background-color: rgba(0, 0, 0,0.5);
+	color: white;
+	border: none;
+	padding: 10px 20px;
+	position: absolute;
+	bottom: 0;
+	cursor: pointer;
+	text-align: center;
+}
+
+#form-login .controles{
+	width: 100%;
+	display: inline-block;
+	justify-content: space-between;
+	align-items: center;
+}
+
+#form-login .controles a{
+	font-size: 0.8rem;
+}
+
+#form-login .controles button{
+	display: block;
+	font-size: 1rem;
+	background-color: #0A4092;
+	color: white;
+	border: none;
+	padding: 10px 20px;
+	width: 100%;
+	opacity: 0.8;
+	cursor: pointer;
+	border-radius: 8px;
+}
+
+#form-login .controles button:hover{
+	opacity: 1;
+	color: #FFFF05;
+}
+.politica{
+	margin-top: 10px;
+	text-align: center;
+}
+.sexo{
+	display: flex;
+	width: 70%;
+	font-size: 1rem;
+	border: none;
+	margin-bottom: 10px;
+}
+.radio-box{
+	display: inline-flex;
+	width: 40%;
+	border-color: #0A4092;
+	border-radius: 8px;
+	margin-bottom: 20px;
+	justify-content: space-between;
+}
+
+
+.ofertas{
+	display: flex;
+}

@@ -1,0 +1,101 @@
+.titulo{
+	text-transform: uppercase;
+	color:#FFFFFF;
+	text-align: center;
+	background-color: #0A4092;
+	height: 35px;
+	font-size: 1.5rem;
+	border-radius: 8px;
+	opacity: 0.8;
+}
+
+#form-login {
+	width: 480px;
+	margin: 5vh auto 0 auto;
+	background-color:#FFFFFF;
+	color: #52545E;
+	padding: 50px;
+}
+
+#form-login label {
+	display: block;
+	margin-bottom: 20px;
+	position: relative;
+}
+
+#form-login label input {
+	display: block;
+	padding: 5px;
+	border-color: #0A4092;
+	margin-top: 10px;
+	width: 97%;
+	border-radius: 8px;
+}	
+
+#form-login label input[type="file"]{
+	display: none;
+}
+
+#form-login label div:not(.esqueceu){
+	width: 100%;
+	display: block;
+	font-size: 1rem;
+	background-color: rgba(0, 0, 0,0.5);
+	color: white;
+	border: none;
+	padding: 10px 20px;
+	position: absolute;
+	bottom: 0;
+	cursor: pointer;
+	text-align: center;
+}
+
+#form-login .controles{
+	width: 100%;
+	display: inline-block;
+	justify-content: space-between;
+	align-items: center;
+}
+
+#form-login .controles a{
+	font-size: 0.8rem;
+}
+
+#form-login .controles button{
+	display: block;
+	font-size: 1rem;
+	background-color: #0A4092;
+	color: white;
+	border: none;
+	padding: 10px 20px;
+	width: 100%;
+	opacity: 0.8;
+	cursor: pointer;
+	border-radius: 8px;
+}
+
+#form-login .controles button:hover{
+	opacity: 1;
+}
+
+.alert-error{
+	background-color: rgba(100,0,0,0.5);
+	color: #FFF;
+	width: 480px;
+	margin: 20px auto;
+	padding: 20px;
+	text-align: center;
+}
+
+.ou{
+	text-align: center;
+}
+
+.esqueceu{
+	text-align: right;
+}
+
+a:link 
+{ 
+ text-decoration:none; 
+} 
