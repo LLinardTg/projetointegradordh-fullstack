@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevHouse</title>
+    <link href="" rel="stylesheet">
+    <link rel="stylesheet" href="css/cadastro.css">
+</head>
+
+<body>
+    <form id="form-login" method="POST" action="/user/cadastro">
+        <div>
+            <label class="titulo" afor="titulo">
+                NOVO CADASTRO
+            </label>
+            <label for="email">
+                E-mail
+                <br>
+                <input type="text" name="email" id="email" placeholder="Digite seu email...">
+            </label>
+        </div>
+        <div>
+            <label class="senha" for="senha">
+                Senha
+                <br>
+                <input type="password" name="senha" id="senha" placeholder="Digite sua senha...">
+            </label>
+        </div>
+        <div>
+            <label class="cpf" for="cpf">
+                CPF
+                <br>
+                <input type="text" class="form-control cpf-mask" placeholder="Ex.: 000.000.000-00">
+            </label>
+        </div>
+        <div>
+            <label class="nome" for="nome">
+                Nome Completo
+                <br>
+                <input type="text" class="nome" placeholder="Digite seu nome completo...">
+            </label>
+        </div>
+        <div>
+            <label class="nascimento" for="nascimento">
+                Data de Nascimento
+                <br>
+                <input type="text" class="data" placeholder="Ex.: dd/mm/aaaa" data-mask="00/00/0000" maxlength="10" autocomplete="off">
+            </label>
+        </div>
+        <div class="sexo">
+            <label class="sexo" for="sexo">
+                Sexo
+            </label>
+        </div>
+        <div class="radio-box">
+            <input type="radio" name="sex" value="male"> Masculino
+            <input type="radio" name="sex" value="female"> Feminino
+        </div>
+        <div>
+            <label class="telefone" for="telefone">
+                Telefone
+                <br>
+                <input type="tel" id="phone" name="phone" pattern="[0-9]{2}-[0-9]{9}" placeholder="xx-xxxxxxxxx" required>
+            </label>
+        </div>
+        <div class="ofertas">
+            <input class="ofertas" type="checkbox" id="ofertas" name="ofertas" checked>
+        </div>
+        <div class="ofertas">
+            <label for="ofertas">Deseja receber nossas ofertas por e-mail?</label>
+        </div>
+        <div class="controles">
+            <button type="submit">Criar Cadastro</button>
+        </div>
+        <div class="politica">
+            Concordo com a Política de Privacidade
+        </div>
+    </form>
+
+</body>
+
+</html>
