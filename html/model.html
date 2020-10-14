@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Padrão de estilos</title>
+    <link rel="stylesheet" href="css/main.css">
+    <style>
+        .color_1,
+        .color_2,
+        .color_3 {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+        }
+        
+        .color_1 {
+            background-color: #1C2E4A;
+        }
+        
+        .color_2 {
+            background-color: #FFFF05;
+        }
+        
+        .color_3 {
+            background-color: #EBEBEB;
+        }
+        
+        .row {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: stretch;
+            align-self: center;
+            margin: 100px;
+        }
+        
+        .col {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: stretch;
+            align-self: center;
+        }
+        
+        .style {
+            color: rgb(146, 66, 146);
+            max-width: 40%;
+            font-size: 16px;
+        }
+        
+        .elements {
+            margin: 10px;
+            align-items: center;
+            width: 100%;
+        }
+    </style>
+</head>
+
+
+<body>
+    <div class="row">
+        <div>
+            <div class="color_1"></div>
+            <h3>#1C2E4A</h3>
+        </div>
+        <div>
+            <div class="color_2"></div>
+            <h3>#FFFF05</h3>
+        </div>
+        <div>
+            <div class="color_3"></div>
+            <h3>#EBEBEB</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="elements">
+                <h2>Headings</h2>
+            </div>
+            <div class="elements">
+                <p class="style">
+                    .h1,.h2,.h3,.h4,h1,h2,h3,h4 { font-family: 'Lato'; }
+                </p>
+            </div>
+        </div>
+        <div class="col">
+            <div class="elements">
+                <p>Parágrafo</p>
+            </div>
+            <div class="elements">
+                <p class="style">
+                    p { margin-top: 0; margin-bottom: 0; font-size: 13px; line-height: 1.3em; font-family: "Lato"; color: black; }
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="elements">
+                <h1>H1</h1>
+            </div>
+            <div class="elements">
+                <p class="style">
+                    .h1, h1 { font-size: 52px; color: #007E7A; }
+                </p>
+            </div>
+        </div>
+        <div class="col">
+            <div class="elements">
+                <h2>H2</h2>
+            </div>
+            <div class="elements">
+                <p class="style">
+                    .h2, h2 { font-size: 32px; color: #1C2E4A; }
+                </p>
+            </div>
+        </div>
+        <div class="col">
+            <div class="elements">
+                <h3>H3</h3>
+            </div>
+            <div class="elements">
+                <p class="style">
+                    .h3, h3 { font-size: 20px; color: #1C2E4A; }
+                </p>
+            </div>
+        </div>
+        <div class="col">
+            <div class="elements">
+                <h4>H4</h4>
+            </div>
+            <div class="elements">
+                <p class="style">
+                    .h4, h4 { font-size: 17px; color: #78A2CC; }
+                </p>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="row">
+        <input type="text" class="input_text" placeholder="O QUE PROCURA?">
+        <div class="elements">
+            <p class="style">
+                .input_text { display: inline-block; padding: 8px; border-color: #1C2E4A; border-radius: 5px; width: 100%; height: 32px; font-family: "Lato"; }
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="elements">
+            <button class="btn-primary">Botão primário</button>
+        </div>
+        <div class="elements">
+            <p class="style">
+                .btn-primary { display: block; text-align: center; background-color: #1C2E4A; border: none; margin: 5px; color: #FFFFFF; font-weight: bold; height: 30px; cursor: pointer; border-radius: 5px; }
+            </p>
+        </div>
+        <div class="elements">
+            <p class="style">
+                .btn-primary:hover { background-color: #FFFF05; color: #1C2E4A; transition: 0.8s; }
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="elements">
+            <button class="btn-secondary">Botão secundário</button>
+        </div>
+        <div class="elements">
+            <p class="style">
+                .btn-secondary { background-color: #FFFF05; height: 30px; font-weight: bold; font-size: 14px; font-family: "Lato"; border: solid 1px #1C2E4A; color: #1C2E4A; margin: 0px 5px 0px 5px; border-radius: 5px; }
+            </p>
+        </div>
+        <div class="elements">
+            <p class="style">
+                .btn-secondary:hover { background-color: #1C2E4A; color: white; border: solid 1px #FFFF05; transition: 1s; }
+            </p>
+        </div>
+    </div>
+</body>
+
+</html>
