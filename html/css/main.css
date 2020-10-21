@@ -51,14 +51,15 @@ h4 {
 .btn-primary {
     display: block;
     text-align: center;
+    font-family: "Lato";
     background-color: #1C2E4A;
     border: none;
     margin: 5px;
     color: #FFFFFF;
     font-weight: bold;
-    height: 30px;
     cursor: pointer;
     border-radius: 5px;
+    padding: 10px;
 }
 
 .btn-primary:hover {
@@ -69,7 +70,6 @@ h4 {
 
 .btn-secondary {
     background-color: #FFFF05;
-    height: 30px;
     font-weight: bold;
     font-size: 14px;
     font-family: "Lato";
@@ -78,6 +78,7 @@ h4 {
     cursor: pointer;
     margin: 0px 5px 0px 5px;
     border-radius: 5px;
+    padding: 10px;
 }
 
 .btn-secondary:hover {
@@ -93,6 +94,5 @@ h4 {
     border-color: #1C2E4A;
     border-radius: 5px;
     width: 100%;
-    height: 32px;
     font-family: "Lato";
 }

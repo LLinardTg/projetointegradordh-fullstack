@@ -11,6 +11,10 @@ main {
     margin-top: 70px;
 }
 
+li {
+    font-family: "Lato";
+}
+
 #barra-procurar {
     height: 20px;
 }
@@ -81,7 +85,7 @@ main {
     padding: 3px;
     margin: 5px;
     font-size: 14px;
-    font-family: "Noto Sans";
+    font-family: "Lato";
 }
 
 .Sidebar li {
@@ -118,6 +122,10 @@ main {
 }
 
 .Sidebar_preco_slider {
+    margin: 5px;
+}
+
+.Sidebar_descontos label {
     margin: 5px;
 }
 
@@ -188,7 +196,7 @@ main {
 }
 
 .Produtos_produto_name {
-    font-family: "Noto Sans";
+    font-family: "Lato";
     font-weight: 300;
 }
 
@@ -200,10 +208,7 @@ main {
     width: 70vw;
 }
 
-.Produtos_header_titulo {
-    color: #1C2E4A;
-    font-family: "Lato";
-    font-size: 32px;
+.Produtos_header h1 {
     margin-left: 20px;
 }
 
