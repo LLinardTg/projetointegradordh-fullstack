@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <%-include('./partials/head')%>
+    <link rel="stylesheet" type="text/css" id="applicationStylesheet" href="/stylesheets/cadastro_produto.css" />
+</head>
+
+<body>
+    <%-include('./partials/header')%>
+    <main>
+    <h1>CADASTRO DE PRODUTO</h1>
+    <form id="cadastro_produto" method="POST" action="/adm/cadastrarproduto" enctype="multipart/form-data">
+        <div class="col">
+            <h3>Foto</h3>
+                <img id='img_insert'   src="/images/image_empty.png">
+                <input type="hidden" id="imagefile" name="image">
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="validatedCustomFile" lang="pt" name='img' onchange="onChangeImage();"  required>
+                    <label id="labelimage" class="custom-file-label" for="validatedCustomFile">Clique para selecione nova imagem</label>
+                    <div class="invalid-feedback">Example invalid custom file feedback</div>
+                  </div>
+        </div>
+        <div class="col">
+            <h3>Código</h3>
+            <div class="row">
+                <input class="input_text" type="text" name="codigo" id="codigoinput" placeholder="Digite o código">
+                <article>ou</article>
+                <select class="selectpicker" name="codigo" id="codigo" onchange="getSelectValue();" data-live-search="true">
+                    <option value="" disabled selected>Escolha um código </option>
+                    <% codigo.forEach( (cod)=>{  %>
+                    <option value="<%= cod %>"><%= cod %></option>
+                    <% }) %>
+                </select>
+            </div>
+            <h3>Nome do produto</h3>
+            <input class="input_text" type="text" name="nome"  id="nome" placeholder="Digite o nome do produto">
+            <h3>Preço</h3>
+            <input class="input_text" type="number" name="preco" id="preco" step="0.01" placeholder="Digite o preco">
+            <h3>Quantidade</h3>
+            <input class="input_text" type="number" name="quantidade" id="quantidade" placeholder="Digite a quantidade">
+            <h3>Tamanho</h3>
+            <label>
+                <input type="radio" name="tamanho" value="PP">
+                <label for="tamanho">PP</label>
+                <input type="radio" name="tamanho" value="P">
+                <label for="tamanho">P</label>
+                <input type="radio" name="tamanho" value="M">
+                <label for="tamanho">M</label>
+                <input type="radio" name="tamanho" value="G">
+                <label for="tamanho">G</label>
+                <input type="radio" name="tamanho" value="GG">
+                <label for="tamanho">GG</label>
+                <input type="radio" name="tamanho" value="NULL">
+                <label for="tamanho">Não se aplica</label>
+            </label>
+            <h3>Cor</h3>
+            <div class="row">
+                <div class="color_picker">
+                    <input id="input_color" name="hexcolor" type="color">
+                    <input class="input_text" type="text" name="colorname" id="colorname" placeholder="De um nome para essa cor">
+                </div>
+                <article>ou</article>
+                <select class="selectpicker" name="colorname" data-live-search="true">
+                    <option value="" disabled selected>Escolha uma cor</option>
+                    <% cor.forEach( (c)=>{ %>
+                    <option style="background: <%=c.hexcolor%>; color: #c6c6c6"><%=c.color%></option>
+                    <% })%>
+                </select>
+            </div>
+            <h3>Categoria</h3>
+            <div class="row">
+                <select class="selectpicker" name="categoria" data-live-search="true">
+                    <option value="" disabled selected>Escolha uma categoria</option>
+                    <% categorias.forEach( (cat)=>{  %>
+                        <option value="<%= cat %>"><%= cat %></option>
+                        <% }) %>
+                </select>
+                <article>ou</article>
+                <input class="input_text" type="text" name="categoria" 
+                    placeholder="Escreva uma nova categoria" id="categoria" >
+            </div>
+            <h3>Subcategoria</h3>
+            <div class="row">
+                <select class="selectpicker"  name="subcategoria" data-live-search="true">
+                    <option value="" disabled selected>Escolha uma subcategoria</option>
+                    <% subcategorias.forEach( (cat)=>{  %>
+                        <option value="<%= cat %>"><%= cat %></option>
+                        <% }) %>
+                </select>
+                <article>ou</article>
+                <input class="input_text" type="text" name="subcategoria"
+                id="subcategoria" placeholder="Escreva uma nova categoria">
+            </div>
+            <button class="btn-primary" type="submit">Salvar</button>
+        </div>
+
+        
+    </form>
+    <h1 id="emptyspace">AA</h1>
+</main>
+<%-include('./partials/footer')%>
+</body>
+<script>
+    function onChangeImage(){
+       var filename= document.getElementById("validatedCustomFile").value.split('\\')[document.getElementById("validatedCustomFile").value.split('\\').length-1]
+       var file= '/images/produtos/'+filename
+       document.getElementById("img_insert").src=file
+       document.getElementById("labelimage").innerHTML=filename
+       document.getElementById("imagefile").value=filename
+
+    }
+    function getSelectValue()
+        {
+            var selectedValue = document.getElementById("codigo").value;
+            console.log(selectedValue)
+        $.ajax(
+        {
+          type: 'GET',
+          url: '/adm/produto/'+selectedValue,
+          dataType: 'json',
+          contentType: 'application/json; charset=utf-8',
+          success: res => {
+              console.log(res)
+            document.getElementById("nome").value=res.nome
+            document.getElementById("preco").value=res.preco
+            document.getElementById("quantidade").value=res.quantidade
+            document.getElementById("input_color").value=res.hexcor
+            document.getElementById("colorname").value=res.cor
+            document.getElementById("categoria").value=res.categorias.categoria
+            document.getElementById("subcategoria").value=res.categorias.subcategoria
+            document.getElementById("img_insert").src=res.imagem
+            document.getElementById("labelimage").innerHTML=res.imagem.split('/')[res.imagem.split('/').length-1]
+            document.getElementById("validatedCustomFile").required=false
+            document.getElementById("imagefile").value=res.imagem.split('/')[res.imagem.split('/').length-1]
+            
+
+          },
+          error: error=>console.log(error)
+        })
+
+
+            
+        }
+
+</script>
+</html>
