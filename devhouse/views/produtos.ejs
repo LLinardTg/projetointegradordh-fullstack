@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <%-include('./partials/head')%>
+    <link rel="stylesheet" href="/stylesheets/categorias.css">
+</head>
+
+<body>
+    <%-include('./partials/header')%>
+    <main>
+        <div class="Sidebar">
+            <a href="javascript:void(0)" class="closebtn" id="closeside" onclick="closeNav()">&times;</a>
+            <h4>Navegar por Categoria:</h4>
+            </br>
+            <% categorias.forEach(c=>{ %>
+            <button class="btn-secondary" onclick="window.location.href='<%=route.split("/").length>3?route:route+"/"+c%>'"><%=c%></button>
+            <%})%>
+            </br>
+            <form action="<%=route%>" method="GET">
+                <h4>Filtros</h4>
+                <h5>Tamanho</h5>
+                <div class="Sidebar_filtros">
+                    <ul>
+                        <li>
+                            <input type="checkbox" name="tamanho" id="tamanho_PP" value="PP"
+                                <%=(filtro.tamanho && filtro.tamanho.includes('PP'))?'checked':"" %>>
+                            <label for="tamanho_PP">PP</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" name="tamanho" id="tamanho_P" value="P"
+                                <%=(filtro.tamanho && filtro.tamanho.includes('P'))?'checked':"" %>>
+                            <label for="tamanho_P">P</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" name="tamanho" id="tamanho_M" value="M"
+                                <%=(filtro.tamanho && filtro.tamanho.includes('M'))?'checked':"" %>>
+                            <label for="tamanho_M">M</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" name="tamanho" id="tamanho_G" value="G"
+                                <%=(filtro.tamanho && filtro.tamanho.includes('G'))?'checked':"" %>>
+                            <label for="tamanho_G">G</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" name="tamanho" id="tamanho_GG" value="GG"
+                                <%=(filtro.tamanho && filtro.tamanho.includes('GG'))?'checked':"" %>>
+                            <label for="tamanho_GG">GG</label>
+                        </li>
+                    </ul>
+                </div>
+                </br>
+                <h5>Cores</h5>
+                <div class="Sidebar_color">
+                    <ul>
+                        <% color.forEach(cor=>{%>
+                        <li>
+                            <input type="checkbox" name="cor" value="<%=cor.cor%>"
+                                <%=(filtro.cor && filtro.cor.includes(cor.cor))?'checked':"" %>>
+                            <div class="Sidebar_color_square" style="background-color:<%=cor.hexcor%>"></div>
+                            <%=cor.cor%>
+                        </li>
+                        <% }) %>
+                    </ul>
+                </div>
+                </br>
+                <div class="Sidebar_preco">
+                    <h5>Preço</h5>
+                    <div class="Sidebar_preco_labels">
+                        <div>R$0,00</div>
+                        <div>R$500,00</div>
+                    </div>
+                    <input type="range" min="1" max="500" value=<%=filtro.range?filtro.range:50 %>
+                        class="Sidebar_preco_slider" name="range" onchange="changelabels()" id="myRange">
+                    <div class="Sidebar_preco_labels" id="preco_labels">R$0,00 - R$50,00</div>
+                </div>
+                </br>
+                <h5>Descontos</h5>
+                <div class="Sidebar_descontos">
+                    <ul>
+                        <li>
+                            <input type="checkbox" name="desconto" value="10"
+                                <%=(filtro.desconto && filtro.desconto.includes(10))?'checked':"" %>>
+                            <label for="10"> até 10%</label><br>
+                        </li>
+                        <li>
+                            <input type="checkbox" name="desconto" value="20"
+                                <%=(filtro.desconto && filtro.desconto.includes(20))?'checked':"" %>>
+                            <label for="30"> de 10 a 30%</label><br>
+                        </li>
+                        <li>
+                            <input type="checkbox" name="desconto" value="60"
+                                <%=(filtro.desconto && filtro.desconto.includes(60))?'checked':"" %>>
+                            <label for="60"> de 30 a 60%</label><br>
+                        </li>
+                        <li>
+                            <input type="checkbox" name="desconto" value="80"
+                                <%=(filtro.desconto && filtro.desconto.includes(80))?'checked':"" %>>
+                            <label for="80"> de 60 a 80%</label><br>
+                        </li>
+                        <li>
+                            <input type="checkbox" name="desconto" value="100"
+                                <%=(filtro.desconto && filtro.desconto.includes(100))?'checked':"" %>>
+                            <label for="100"> mais de 80%</label><br>
+                        </li>
+                    </ul>
+                </div>
+                <br>
+                <button type="submit" class="btn-primary">Filtrar</button>
+            </form>
+        </div>
+        <div class="Produtos">
+            <div class="Produtos_header">
+                <h1 class="Produtos_header_titulo"><%=title%></h1>
+                <div class="Produtos_header_ordem">
+                    <span>Ordenar por:</span>
+                    <select id="order" name="select" onchange="javascript:handleSelect(this)">
+                        <option value="alfabetica" <%=(order.includes("alfabetica"))?'selected':"" %>>Ordem alfabética
+                        </option>
+                        <option value="vendidos" disabled>Mais vendidos</option>
+                        <option value="maior" <%=(order.includes("maior"))?'selected':"" %>>Maior preço</option>
+                        <option value="menor" <%=(order.includes("menor"))?'selected':"" %>>Menor preço</option>
+                    </select>
+                    <button id="Sidebar_open" class="Sidebar_open">Filtrar</button>
+                </div>
+            </div>
+
+            <div class="Produtos_galeria">
+                <%produtos.forEach(produto=>{%>
+                <article class="Produtos_produto">
+                    <img class="Produtos_produto_img" src="<%=produto.imagem%>" alt="<%=produto.nome%>">
+                    <div class="Produtos_produto_name"><%=produto.nome%></div>
+                    <div class="Produtos_produto_name">R$<%=produto.preco%></div>
+                    <button class="btn-primary">Compre </button>
+                    <button onclick="location.href='/produtos/<%=produto.codigo%>'"
+                        class="btn-primary">Detalhes</button>
+                </article>
+                <%})%>
+
+            </div>
+            <div class="Produtos_pagination">
+                <a class="Produtos_pagination_point" href="#">❮</a>
+                <%for (let i=1;i<=totalPages;i++){%>
+                <a href="#<%=i%>" class="page" id=<%=activePage==i.toString()?"active":""%>><%=i%></a>
+                <%}%>
+                <a class="Produtos_pagination_pointend" href="#<%=totalPages%>">❯</a>
+            </div>
+    </main>
+
+    <%-include('./partials/footer')%>
+</body>
+<script>
+
+    var maxPage=$(".Produtos_pagination_pointend")[0].href.split("#")[1]
+
+    if (window.location.search.indexOf("page") > -1) {
+        $(".Produtos_pagination_point")[0].href = window.location.origin + window.location.pathname + window.location.search.replace(window.location.search.split("&").find(a => a.indexOf("page") > -1).split("=")[1], (Number(window.location.search.split("&").find(a => a.indexOf("page") > -1).split("=")[1]) == 1 ? 1 : Number(window.location.search.split("&").find(a => a.indexOf("page") > -1).split("=")[1]) - 1))
+        $(".Produtos_pagination_pointend")[0].href = window.location.origin + window.location.pathname + window.location.search.replace(window.location.search.split("&").find(a => a.indexOf("page") > -1).split("=")[1], (Number(window.location.search.split("&").find(a => a.indexOf("page") > -1).split("=")[1]) == maxPage ? maxPage : Number(window.location.search.split("&").find(a => a.indexOf("page") > -1).split("=")[1]) +1))
+    } else if (window.location.search == "") {
+        maxPage>1?$(".Produtos_pagination_pointend")[0].href = window.location.origin + window.location.pathname + "?page=" + 2:$(".Produtos_pagination_pointend")[0].href = window.location.origin + window.location.pathname + "?page=" + 1
+        $(".Produtos_pagination_point")[0].href = window.location.origin + window.location.pathname + "?page=" + 1
+    }else{
+        maxPage>1?$(".Produtos_pagination_pointend")[0].href = window.location.href  + "&page=" + 2:$(".Produtos_pagination_pointend")[0].href = window.location.href +  "&page=" + 1
+        $(".Produtos_pagination_point")[0].href = window.location.href +  "&page=" + 1
+    } 
+
+    for (let pg of $(".page")) {
+        if (window.location.search == "") {
+            Pagehref = window.location.origin + window.location.pathname + "?page=" + pg.href.split("#")[1]
+
+        } else if (window.location.search.indexOf("page") > -1) {
+            Pagehref = window.location.origin + window.location.pathname + window.location.search.replace(window.location.search.split("&").find(a => a.indexOf("page") > -1).split("=")[1], pg.href.split("#")[1])
+        } else {
+            Pagehref = window.location.href + "&page=" + pg.href.split("#")[1]
+        }
+        pg.href = Pagehref
+    }
+    function handleSelect(elm) {
+
+        if (window.location.search == "") {
+            window.location.search = "?ordem=" + elm.value
+        } else if (window.location.search.indexOf("ordem") > -1) {
+            window.location.search = window.location.search.replace(window.location.search.split("&").find(a => a.indexOf("ordem") > -1).split("=")[1], elm.value)
+        } else {
+            window.location.search = window.location.search + "&ordem=" + elm.value
+        }
+    }
+    function changelabels() {
+        var range = document.getElementById("myRange").value
+        document.getElementById("preco_labels").innerHTML = "R$0,00 - R$" + range
+        console.log(range)
+    }
+    document.getElementById("Sidebar_open").addEventListener("click", function () {
+        document.getElementsByClassName("Sidebar")[0].style.display = ""
+        document.getElementsByClassName("Produtos")[0].style.display = "none"
+
+    })
+
+    document.getElementById("closeside").addEventListener("click", function () {
+        document.getElementsByClassName("Produtos")[0].style.display = ""
+        document.getElementsByClassName("Sidebar")[0].style.display = "none"
+    });
+
+    if (window.matchMedia("(max-width: 600px)").matches) {
+        /* The viewport is less than, or equal to, 700 pixels wide */
+        document.getElementsByClassName("Sidebar")[0].style.display = "none"
+
+    } else {
+        /* The viewport is greater than 700 pixels wide */
+        document.getElementsByClassName("Sidebar")[0].style.display = ""
+    }
+</script>
+
+</html>

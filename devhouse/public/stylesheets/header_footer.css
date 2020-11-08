@@ -1,0 +1,284 @@
+* { margin: 0; padding: 0;
+}
+
+a:link {
+	text-decoration: none;
+	color: none;
+}
+  
+a:visited {
+	text-decoration: none;
+	color: none;
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+	z-index: 1000;
+	background-color: #1C2E4A;
+	width: 100%;
+	height: 60px;
+    top: 0px;
+    justify-content: center;
+    
+}
+
+.header_group{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 0px 20px 0px 20px;
+
+}
+
+
+
+.search{
+    flex-grow: 2;
+    margin: 0px 60px 0px 60px;
+}
+
+.dropdown-item:hover{
+    background-color: #EBEBEB;
+}
+
+.header_group .menu{
+    flex-grow: 1;
+}
+
+.header_group .cadastro{
+    flex-grow: 1;
+}
+
+
+.header_menu .btn {
+    background-color: #1C2E4A;
+    border: none;
+    font-size: 40px;
+    padding: 0px;
+    margin-left:10px ;
+    
+    color: white;
+
+}
+
+
+#nav {
+    list-style: none inside;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+
+}
+
+#nav li {
+    background-color: #1C2E4A;
+    border: none;
+    font-size: 40px;
+    padding: 0px;
+    /* margin-left: 10px; */
+    color: white;
+    display: block;
+    position: relative;
+    float: left;
+    /* background: #24af15; */
+    /* menu background color */
+}
+
+#nav li a {
+    display: block;
+    padding: 0;
+    text-decoration: none;
+    width: 200px;
+    /* this is the width of the menu items */
+    line-height: 35px;
+    /* this is the hieght of the menu items */
+    color: #ffffff;
+
+}
+
+
+
+
+.submenu {
+    -webkit-box-shadow: -5px 3px 19px -2px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: -5px 3px 19px -2px rgba(0, 0, 0, 0.75);
+    box-shadow: -5px 3px 19px -2px rgba(0, 0, 0, 0.75);
+    /* border: solid 1px #1C2E4A; */
+    border-radius: 8px;
+}
+
+#nav li li a {
+    font-size: 0.9rem;
+    font-weight: bold;
+    background-color: #ffffff;
+    color: #1C2E4A;
+}
+
+/* smaller font size for sub menu items */
+#nav li li a:hover {
+    background: #FFFF05;
+}
+
+/* highlights current hovered list item and the parent list items when hovering over sub menues */
+#nav ul {
+    position: absolute;
+    padding: 0;
+    left: 0;
+    display: none;
+    /* hides sublists */
+}
+
+#nav li:hover ul ul {
+    display: none;
+}
+
+/* hides sub-sublists */
+#nav li:hover ul {
+    display: block;
+}
+
+/* shows sublist on hover */
+#nav li li:hover ul {
+    display: block;
+    /* shows sub-sublist on hover */
+    margin-left: 200px;
+    /* this should be the same width as the parent list item */
+    margin-top: -35px;
+    /* aligns top of sub menu with top of list item */
+}
+
+#topmenu_{
+    cursor: pointer;
+}
+
+.header_cadastro .btn:hover{
+    background-color: #EBEBEB;
+}
+
+#search {
+    color: white;
+    font-weight: bold;
+    margin-left: 5px;
+    font-size: 20px;
+}
+
+.footer_info {
+    background-color: #EBEBEB;
+    padding: 2%;
+    padding-bottom: 0%;
+}
+
+
+#endereco-site-footer {
+	text-align: left;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 12px;
+	margin-bottom: 20px;
+}
+
+#copy-site-footer {
+    margin-top: 5%;
+	text-align: center;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 11px;
+	margin-left: auto;
+    margin-right: auto;
+    color: #1C2E4A;
+}
+
+#logo{
+    margin-right: 10px;
+}
+.inscrever {
+	background-color: #1C2E4A;
+	width: 100%;
+	height: 109px;
+	top: 727px;
+	padding-top: 20px;
+}
+
+#titulo-inscrever {
+	color: #FFFF05;
+	top: 20px;
+	width: 303px;
+	text-align: center;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 14px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 20px;
+}
+
+footer .btn-secondary{
+	line-height:40px;
+	text-align: center;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	padding-top: auto;
+	padding-bottom: auto;
+	width: 150px;
+	height: 40px;
+}
+.row{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: justify;
+    /* align-items: center; */
+    margin: 0px;
+    
+}
+.col{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 10px;
+    
+}
+
+footer p , a{
+    color: #1C2E4A;
+    font-size: 12px;
+    font-weight: 200;
+}
+
+a:hover{
+    color: #FFFF05
+}
+
+ul{
+    color: #1C2E4A
+}
+
+footer h4{
+    margin-bottom: 5px;
+}
+
+.social-buttons *{
+    font-size: 20px;
+}
+
+.dropdown-item{
+    color: #1C2E4A;
+    font-size: 0.9rem;
+}
+
+.dropdown-item:hover{
+    background-color: #FFFF05
+}
+
+.dropdown-menu.show {
+    margin-top: 5px;
+    display: block;
+}
+
+.btn-secondary:not(:disabled):not(.disabled).active, .btn-secondary:not(:disabled):not(.disabled):active, .show>.btn-secondary.dropdown-toggle {
+    color: #1C2E4A;
+    background-color: #EBEBEB;
+    border-color: #EBEBEB;
+}
