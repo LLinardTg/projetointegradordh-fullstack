@@ -57,7 +57,6 @@ header {
     font-size: 40px;
     padding: 0px;
     margin-left:10px ;
-    
     color: white;
 
 }
@@ -83,6 +82,7 @@ header {
     float: left;
     /* background: #24af15; */
     /* menu background color */
+    z-index: 1;
 }
 
 #nav li a {
@@ -148,7 +148,7 @@ header {
     /* aligns top of sub menu with top of list item */
 }
 
-#topmenu_{
+#topmenu{
     cursor: pointer;
 }
 
@@ -281,4 +281,21 @@ footer h4{
     color: #1C2E4A;
     background-color: #EBEBEB;
     border-color: #EBEBEB;
+}
+
+#btn-search{
+    background-color: #1C2E4A;
+    border:none;
+
+}
+.header_group form{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+
+}
+
+.header_group input{
+    flex-grow: 2;
+
 }

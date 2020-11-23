@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+    <%-include('./partials/head')%>
+    <link rel="stylesheet" href="/stylesheets/loginadm.css">
+</head>
+
+<body>
+    <%-include('./partials/header')%>
+    <h1>
+        CADASTRO DE ADMINISTRADOR
+    </h1>
+
+
+    <form id="form-login" method="POST" action="/adm/cadastrar">
+        
+
+            <% if(typeof sucess != 'undefined') {%>
+                <h3 class="user_create">Usuário criado com sucesso!!</h3>
+                        
+                <%}%>
+            <% if(typeof errors != 'undefined') {%>
+          
+            <ul class="error_message">
+                <% for (var i=0;i<errors.length;i++){ %>
+                    <li><%=errors[i].msg%></li>
+                    <%}%>
+            </ul>
+            <% } %>
+
+
+        <div>
+            <label for="user">
+                Usuário
+                <input class="input_text" type="text" name="user" id="user" placeholder="Digite um usuario">
+            </label>
+        </div>
+        <div>
+            <label for="email">
+                Email
+                <input class="input_text" type="email" name="email" id="email" placeholder="Digite seu email">
+            </label>
+        </div>
+        <div class="senha">
+            <label class="senha" for="senha">
+                Senha
+                <input class="input_text" type="password" name="senha" id="senha" placeholder="Digite uma senha com no minimo de 6 caracteres">
+            </label>
+            <label class="senha" for="senhaconfirm">
+                Confirmar a senha
+                <input class="input_text" type="password" name="senhaconfirm" id="senhaconfirm" placeholder="Confirmar sua senha">
+            </label>
+        </div>
+            <button class="btn-primary" type="submit">Cadastrar</button>
+    </form>
+    <h1>***</h1>
+    <%-include('./partials/footer')%>
+
+</body>
+
+</html>

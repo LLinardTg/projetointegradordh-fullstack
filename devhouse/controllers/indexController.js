@@ -80,30 +80,51 @@ indexController = {
     busca: async (req, res) => {
         var query = req.query.q
         console.log(query)
-        var produtos = await Produto.findAll({
+        var {count:total,rows:produtos} = await Produto.findAndCountAll({
+            include: {
+                association: 'categorias',
+                where: {
+                    categoria: req.params.categoria ? req.params.categoria : { [Op.ne]: 1 },
+                    subcategoria: req.params.subcategoria ? req.params.subcategoria : { [Op.ne]: 1 },
+                }
+            },
             where: {
-                [Op.or]: [{ "nome": { [Op.like]: query } }, { "cor": { [Op.like]: query } }, { "tamanho": { [Op.like]: query } }]
+                [Op.or]: [{ "nome": { [Op.substring]: query } }, { "cor": { [Op.substring]: query } }, { "tamanho": { [Op.substring]: query } }]
             },
             attributes: ['nome', 'preco', 'imagem', 'codigo'],
-            group: ['nome', 'preco', 'imagem', 'codigo'],
+            group: ['nome', 'preco', 'imagem', 'codigo', 'id_produtos_categorias'],
             order:req.query.ordem?ordenacao(req.query.ordem):[['nome','ASC']],
             limit:12,
             offset: req.query.page? (Number(req.query.page)-1)*12:0
         })
-        var categorias = await Categoria.findAll({
-            attributes: ['categoria'],
-            group: ["categoria"]
-        });
-        var color = await Produto.findAll({
+        var totalPage=Math.ceil(total.length/12)
+        var color = await Produto.findAll({ 
             attributes: ['cor', 'hexcor'],
             group: ["cor", "hexcor"]
         })
+        if(req.params.subcategoria ){
+            var title = req.params.subcategoria 
+            var categoriasToSelect = [...new Set(produtos.map(p => p.dataValues.categorias).map(c => c.subcategoria))]
+            var route = "/produtos/"+req.params.categoria+"/"+req.params.subcategoria
+        }else if(req.params.categoria ){
+            var title = req.params.categoria 
+            var categoriasToSelect = [...new Set(produtos.map(p => p.dataValues.categorias).map(c => c.subcategoria))]
+            var route="/produtos/"+req.params.categoria
+        }else{
+            var title="Produtos"
+            var categoriasToSelect = [...new Set(produtos.map(p => p.dataValues.categorias).map(c => c.categoria))]
+            var route="/produtos"
+        }
+
         var infos = {
-            filtro: req.query,
+            route:route,
+            activePage: req.query.page? Number(req.query.page):1,
+            totalPages:totalPage,
             order: req.query.ordem?req.query.ordem:"alfabetica",
-            title: "Produtos",
+            filtro: req.query,
+            title: title,
             produtos: produtos.map(p => p.dataValues),
-            categorias: categorias.map(c => c.dataValues),
+            categorias: categoriasToSelect,
             color: color.map(c => c.dataValues)
         }
         res.render('produtos', infos)

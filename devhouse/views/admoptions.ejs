@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+    <%-include('./partials/head')%>
+    <link rel="stylesheet" href="/stylesheets/loginadm.css">
+    <style>
+        body{
+            background-color: #EBEBEB;
+        }
+        main{
+            width: 70vw;
+            margin: auto;
+            padding: 15px;
+            height: 50vw;
+            background-color: white;
+        }
+        .btn-primary{
+            margin:5px
+        }
+        .buttons{
+            margin-top:20vh;
+        }
+        h1{
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <%-include('./partials/header')%>
+    <h1>Bem vinde, <%=user%></h1>
+    <main>
+        <div class="buttons">
+        <button class="btn-primary" onclick="window.location.href='adm/cadastrarproduto'">Adicionar Produtos</button>
+        <button class="btn-primary" onclick="window.location.href='adm/editarproduto'">Editar Produtos</button>
+        <button class="btn-primary" onclick="window.location.href='adm/cadastrar'">Cadastrar Administrador</button>
+        <button class="btn-primary" onclick="window.location.href='adm/deslogar'">Deslogar</button>
+    </div>
+    </main>
+    <h1>***</h1>
+    <%-include('./partials/footer')%>
+
+    
+</body>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <%-include('./partials/head')%>
+    <link rel="stylesheet" type="text/css" id="applicationStylesheet" href="/stylesheets/cadastro_produto.css" />
+</head>
+
+<body>
+    <%-include('./partials/header')%>
+    <main>
+    <h1>EDITAR PRODUTO</h1>
+    <form id="cadastro_produto" method="POST" action="/adm/editarproduto/salvar" enctype="multipart/form-data">
+        <div class="col">
+            <h3>Foto</h3>
+                <img id='img_insert'   src="<%=produto.imagem%>">
+                <input type="hidden" id="imagefile" name="image" value="<%=produto.imagem%>">
+                <input type="hidden" name="id" value="<%=produto.idprodutos%>">
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="validatedCustomFile" lang="pt" name='img' onchange="onChangeImage();" >
+                    <label id="labelimage" class="custom-file-label" for="validatedCustomFile">Clique para selecione nova imagem</label>
+                    <div class="invalid-feedback">Example invalid custom file feedback</div>
+                  </div>
+        </div>
+        <div class="col">
+            <h3>Código</h3>
+            <input class="input_text" type="text" name="codigo" id="codigoinput" placeholder="Digite o código" value="<%=produto.codigo%>">
+            <h3>Nome do produto</h3>
+            <input class="input_text" type="text" name="nome"  id="nome" placeholder="Digite o nome do produto" value="<%=produto.nome%>">
+            <h3>Preço</h3>
+            <input class="input_text" type="number" name="preco" id="preco" step="0.01" placeholder="Digite o preco" value="<%=produto.preco%>">
+            <h3>Quantidade</h3>
+            <input class="input_text" type="number" name="quantidade" id="quantidade" placeholder="Digite a quantidade" value="<%=produto.quantidade%>">
+            <h3>Desconto</h3>
+            <input class="input_text" type="number" name="desconto" id="desconto" placeholder="Digite o desconto" value="<%=produto.desconto%>">
+            
+            <h3>Cor</h3>
+            <div class="row">
+                <div class="color_picker">
+                    <input id="input_color" name="hexcolor" type="color" value="<%=produto.hexcor%>">
+                    <input class="input_text" type="text" name="colorname" id="colorname" placeholder="De um nome para essa cor" value="<%=produto.cor%>">
+                </div>
+                <article>ou</article>
+                <select class="selectpicker" name="colorname" data-live-search="true">
+                    <option value="" disabled selected>Escolha uma cor</option>
+                    <% cor.forEach( (c)=>{ %>
+                    <option style="background: <%=c.hexcolor%>; color: #c6c6c6"><%=c.color%></option>
+                    <% })%>
+                </select>
+            </div>
+            <h3>Categoria</h3>
+            <div class="row">
+                <select class="selectpicker" name="categoria" data-live-search="true">
+                    <option value="" disabled selected>Escolha uma categoria</option>
+                    <% categorias.forEach( (cat)=>{  %>
+                        <option value="<%= cat %>"><%= cat %></option>
+                        <% }) %>
+                </select>
+                <article>ou</article>
+                <input class="input_text" type="text" name="categoria" 
+                    placeholder="Escreva uma nova categoria" id="categoria" value="<%=produto.categorias.categoria%>">
+            </div>
+            <h3>Subcategoria</h3>
+            <div class="row">
+                <select class="selectpicker"  name="subcategoria" data-live-search="true">
+                    <option value="" disabled selected>Escolha uma subcategoria</option>
+                    <% subcategorias.forEach( (cat)=>{  %>
+                        <option value="<%= cat %>"><%= cat %></option>
+                        <% }) %>
+                </select>
+                <article>ou</article>
+                <input class="input_text" type="text" name="subcategoria"
+                id="subcategoria" placeholder="Escreva uma nova categoria" value="<%=produto.categorias.subcategoria%>">
+            </div>
+            <div class="checkboxrow" style="margin: 10px 0px 10px 1px">
+                <input type="checkbox" name="aplicartodos" value="true">
+                <label for="aplicartodos">Aplicar a todos os produtos de mesmo código?</label>
+              </div>
+            <button class="btn-primary" type="submit">Salvar</button>
+        </div>
+
+        
+    </form>
+    <h1 id="emptyspace">AA</h1>
+</main>
+<%-include('./partials/footer')%>
+</body>
+<script>
+    function onChangeImage(){
+       var filename= document.getElementById("validatedCustomFile").value.split('\\')[document.getElementById("validatedCustomFile").value.split('\\').length-1]
+       var file= '/images/produtos/'+filename
+       document.getElementById("img_insert").src=file
+       document.getElementById("labelimage").innerHTML=filename
+       document.getElementById("imagefile").value=filename
+
+    }
+    function getSelectValue()
+        {
+            var selectedValue = document.getElementById("codigo").value;
+            console.log(selectedValue)
+        $.ajax(
+        {
+          type: 'GET',
+          url: '/adm/produto/'+selectedValue,
+          dataType: 'json',
+          contentType: 'application/json; charset=utf-8',
+          success: res => {
+              console.log(res)
+            document.getElementById("nome").value=res.nome
+            document.getElementById("preco").value=res.preco
+            document.getElementById("quantidade").value=res.quantidade
+            document.getElementById("input_color").value=res.hexcor
+            document.getElementById("colorname").value=res.cor
+            document.getElementById("categoria").value=res.categorias.categoria
+            document.getElementById("subcategoria").value=res.categorias.subcategoria
+            document.getElementById("img_insert").src=res.imagem
+            document.getElementById("labelimage").innerHTML=res.imagem.split('/')[res.imagem.split('/').length-1]
+            document.getElementById("validatedCustomFile").required=false
+            document.getElementById("imagefile").value=res.imagem.split('/')[res.imagem.split('/').length-1]
+            
+
+          },
+          error: error=>console.log(error)
+        })
+
+
+            
+        }
+
+</script>
+</html>

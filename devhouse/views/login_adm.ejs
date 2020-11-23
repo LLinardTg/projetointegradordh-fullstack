@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+    <%-include('./partials/head')%>
+    <link rel="stylesheet" href="/stylesheets/loginadm.css">
+</head>
+
+<body>
+    <%-include('./partials/header')%>
+    <form id="form-login" method="POST" action="/adm">
+        <div>
+            <h2>
+                Área restrita a administradores
+            </h2>
+
+            <% if(typeof errors != 'undefined') {%>
+          
+                <ul class="error_message">
+                    <% for (var i=0;i<errors.length;i++){ %>
+                        <li><%=errors[i].msg%></li>
+                        <%}%>
+                </ul>
+                <% } %>
+
+            <label for="user">
+                Usuário
+                <input class="input_text" type="text" name="user" id="user" placeholder="Digite seu usuario...">
+            </label>
+        </div>
+        <div class="senha">
+            <label class="senha" for="senha">
+                Senha
+                <input class="input_text" type="password" name="senha" id="senha" placeholder="Digite sua senha...">
+            </label>
+        </div>
+        <div class="esqueceu">
+            <label>
+                <a class="esqueceu" href="#">Esqueceu a senha?</a>
+            </label>
+        </div>
+            <button class="btn-primary" type="submit">Entrar</button>
+    </form>
+    <%-include('./partials/footer')%>
+
+</body>
+
+</html>
