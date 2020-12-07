@@ -1,0 +1,335 @@
+* { margin: 0; padding: 0;
+}
+
+a:link {
+	text-decoration: none;
+	color: none;
+}
+  
+  a:visited {
+	text-decoration: none;
+	color: none;
+}
+
+
+.header-categorias {
+	height: 60px;
+	margin-top: 60px;
+	display: flex;
+	justify-content: center;
+	padding-top: 10px;	
+}
+
+#adesivo-circulo {
+	display: inline-block;
+	width: 37px;
+	height: 37px;
+	border-radius: 50%;
+	border-color: #1C2E4A;
+	border-style: solid;
+	margin-left: 30px;	
+}
+
+#camiseta-circulo {
+	display: inline-block;
+	width: 37px;
+	height: 37px;
+	border-radius: 50%;
+	border-color: #1C2E4A;
+	border-style: solid;
+	margin-left: 30px;	
+}
+
+#caneca-circulo {
+	display: inline-block;
+	width: 37px;
+	height: 37px;
+	border-radius: 50%;
+	border-color: #1C2E4A;
+	border-style: solid;
+	margin-left: 30px;
+}
+
+#chaveiro-circulo {
+	display: inline-block;
+	width: 37px;
+	height: 37px;
+	border-radius: 50%;
+	border-color: #1C2E4A;
+	border-style: solid;
+	margin-left: 30px;
+}
+
+.header-categorias-texto {
+	display: flex;
+	justify-content: center;
+	padding-bottom: 5px;
+
+}
+
+#Adesivos {
+	display: inline-block;
+	text-align: center;
+	font-family: Helvetica Neue;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 12px;
+	margin-left: 35px;
+}
+
+#Camisetas {
+	display: inline-block;
+	text-align: center;
+	font-family: Helvetica Neue;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 12px;
+	margin-left: 18px;
+	
+}
+
+#Canecas {
+	display: inline-block;
+	text-align: center;
+	font-family: Helvetica Neue;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 12px;
+	margin-left: 22px;
+	
+}
+
+#Chaveiros {
+	display: inline-block;
+	text-align: center;
+	font-family: Helvetica Neue;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 12px;
+	margin-left: 23px;
+	
+}
+
+.slide {
+	background-color: #EBEBEB;
+	height: 150px;
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+	padding-top: 20px;
+}
+
+#titulo-slide {
+	text-align: center;
+	font-family: Lato;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 21px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 20px;
+}
+
+#descricao-slide {
+	text-align: center;
+	font-family: Lato;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 15px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 20px;
+}
+
+#texto-botao-slide {
+	line-height:40px;
+	background-color: #1C2E4A;
+	text-align: center;
+	font-family: Lato;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 15px;
+	color: white;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	padding-top: auto;
+	padding-bottom: auto;
+	width: 150px;
+	height: 40px;
+}
+
+.mais-vendido {
+	background-color: #EBEBEB;
+	border-color: #1C2E4A;
+	border-top: solid;
+	width: 100%;
+	height: 380px;
+	padding-top: 20px;
+
+
+}
+
+#titulo-mais-vendidos {
+
+	margin-left: auto;
+	margin-right: auto;
+	width: 159px;
+	white-space: nowrap;
+	text-align: center;
+	font-family: Lato;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 22px;
+	margin-bottom: 20px;
+}
+
+#descricao-mais-vendidos {
+	margin-left: auto;
+	margin-right: auto;
+	width: 215px;
+	white-space: nowrap;
+	text-align: center;
+	font-family: Lato;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 15px;
+	margin-bottom: 20px;
+}
+
+.produto-mais-vendido{
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.imagem-produto-mais-vendido {
+	background-color: black;
+	display: block;
+	width: 279px;
+	height: 134px;
+	margin-left: auto;
+	margin-right: auto;
+	
+}
+
+#titulo-produto-mais-vendido {
+	width: 69px;
+	display: block;
+	white-space: nowrap;
+	text-align: center;
+	font-family: Lato;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 15px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#preco-produto-mais-vendido {
+	display: block;
+	text-align: center;
+	font-family: Lato;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 12px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 20px;
+
+}
+
+#texto-botao-mais-vendido {
+	line-height:40px;
+	background-color: #1C2E4A;
+	text-align: center;
+	font-family: Lato;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 15px;
+	color: white;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	padding-top: auto;
+	padding-bottom: auto;
+	width: 150px;
+	height: 40px;
+}
+
+.inscrever {
+	background-color: #1C2E4A;
+	width: 100%;
+	height: 109px;
+	top: 727px;
+	padding-top: 20px;
+}
+
+#titulo-inscrever {
+	color: #FFFF05;
+	top: 20px;
+	width: 303px;
+	text-align: center;
+	font-family: Lato;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 14px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 20px;
+}
+
+#texto-botao-inscrever {
+	background-color: #FFFF05;
+	line-height:40px;
+	text-align: center;
+	font-family: Lato;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 15px;
+	color: #1C2E4A;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	padding-top: auto;
+	padding-bottom: auto;
+	width: 150px;
+	height: 40px;
+}
+
+.footer {
+	background-color: #EBEBEB;
+	height: 100px;
+	padding-left: 20%;
+	padding-right: 20%;
+	padding-top: 20px;
+}
+
+#titulo-site-footer {
+	text-align: left;
+	font-family: Lato;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 15px;
+	margin-bottom: 20px;
+}
+
+#endereco-site-footer {
+	text-align: left;
+	font-family: Noto Sans;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 12px;
+	margin-bottom: 20px;
+}
+
+#copy-site-footer {
+	text-align: center;
+	font-family: Noto Sans;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 11px;
+	margin-left: auto;
+	margin-right: auto;	
+}

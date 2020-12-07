@@ -1,0 +1,79 @@
+[
+    {
+        "idcategorias": 3,
+        "categoria": "Adesivo",
+        "subcategoria": "Divertido",
+        "createdAt": "2020-11-01T22:35:56.000Z",
+        "updatedAt": "2020-11-01T22:35:56.000Z"
+    },
+    {
+        "idcategorias": 5,
+        "categoria": "Caneca",
+        "subcategoria": "Linguagens",
+        "createdAt": "2020-11-01T22:58:52.000Z",
+        "updatedAt": "2020-11-01T22:58:52.000Z"
+    },
+    {
+        "idcategorias": 6,
+        "categoria": "Camiseta",
+        "subcategoria": "Divertido",
+        "createdAt": "2020-11-01T23:01:21.000Z",
+        "updatedAt": "2020-11-01T23:01:21.000Z"
+    },
+    {
+        "idcategorias": 7,
+        "categoria": "Caneca",
+        "subcategoria": "Códigos",
+        "createdAt": "2020-11-02T02:08:31.000Z",
+        "updatedAt": "2020-11-02T02:08:31.000Z"
+    },
+    {
+        "idcategorias": 8,
+        "categoria": "Caneca",
+        "subcategoria": "Dicionário",
+        "createdAt": "2020-11-02T02:21:12.000Z",
+        "updatedAt": "2020-11-02T02:21:12.000Z"
+    },
+    {
+        "idcategorias": 9,
+        "categoria": "Caneca",
+        "subcategoria": "Divertido",
+        "createdAt": "2020-11-02T02:24:49.000Z",
+        "updatedAt": "2020-11-02T02:24:49.000Z"
+    },
+    {
+        "idcategorias": 10,
+        "categoria": "Caneca",
+        "subcategoria": "Simples",
+        "createdAt": "2020-11-02T02:27:51.000Z",
+        "updatedAt": "2020-11-02T02:27:51.000Z"
+    },
+    {
+        "idcategorias": 11,
+        "categoria": "Camiseta",
+        "subcategoria": "Linguagens",
+        "createdAt": "2020-11-06T23:25:23.000Z",
+        "updatedAt": "2020-11-06T23:25:23.000Z"
+    },
+    {
+        "idcategorias": 12,
+        "categoria": "Camiseta",
+        "subcategoria": "Códigos",
+        "createdAt": "2020-11-06T23:26:26.000Z",
+        "updatedAt": "2020-11-06T23:26:26.000Z"
+    },
+    {
+        "idcategorias": 13,
+        "categoria": "Adesivo",
+        "subcategoria": "Softwares",
+        "createdAt": "2020-11-06T23:36:40.000Z",
+        "updatedAt": "2020-11-06T23:36:40.000Z"
+    },
+    {
+        "idcategorias": 14,
+        "categoria": "Adesivo",
+        "subcategoria": "Linguagens",
+        "createdAt": "2020-11-06T23:38:20.000Z",
+        "updatedAt": "2020-11-06T23:38:20.000Z"
+    }
+]

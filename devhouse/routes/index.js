@@ -4,7 +4,7 @@ var indexController=require('../controllers/indexController')
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('produtos', { title: 'Express' });
+  res.render('index', { title: 'HOME' });
 });
 
 router.get('/produtos/:categoria?/:subcategoria?', indexController.loadAllProducts);

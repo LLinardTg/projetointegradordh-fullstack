@@ -310,6 +310,13 @@ const admController = {
                 })
             }
             res.send("produto editado!")
+        },
+        deleteProduct: async (req,res)=>{
+            await Produto.destroy({
+                where:{idprodutos:req.params.id}
+            })
+            res.redirect('../editarproduto')
+
         }
 
 }

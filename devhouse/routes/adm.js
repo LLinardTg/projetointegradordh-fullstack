@@ -118,6 +118,7 @@ router.get('/editarproduto', authadm, admController.editProduct);
 router.get('/buscarproduto', authadm, admController.searchedit);
 router.get('/deslogar', authadm, admController.deslogar);
 router.get('/editarproduto/:id', authadm, admController.editProductById)
+router.get('/deletarproduto/:id', authadm, admController.deleteProduct)
 router.post('/editarproduto/salvar',  upload.any(), admController.saveEdits)
 
 
