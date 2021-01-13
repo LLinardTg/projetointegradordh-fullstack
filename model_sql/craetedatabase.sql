@@ -28,6 +28,8 @@ CREATE TABLE IF NOT EXISTS `devhouse`.`clientes` (
   `data_nascimento` DATE NOT NULL,
   `sexo` VARCHAR(45) NOT NULL,
   `CEP` INT NOT NULL,
+  `createdAt` DATETIME NULL,
+  `updateAt` VARCHAR(45) NULL,
   PRIMARY KEY (`idclientes`))
 ENGINE = InnoDB;
 
@@ -42,8 +44,8 @@ CREATE TABLE IF NOT EXISTS `devhouse`.`pedidos` (
   `data` DATE NOT NULL,
   `frete` DECIMAL NOT NULL,
   `status` VARCHAR(100) NOT NULL,
-  `create_time` DATETIME NULL DEFAULT CURRENT_DATETIME,
-  `update_time` DATETIME NULL DEFAULT NULL,
+  `createdAt` DATETIME NULL,
+  `updateAt` DATETIME NULL DEFAULT NULL,
   PRIMARY KEY (`idpedidos`),
   INDEX `fk_pedidos_Clientes1_idx` (`idclientes` ASC) VISIBLE,
   CONSTRAINT `fk_pedidos_Clientes1`
@@ -51,6 +53,19 @@ CREATE TABLE IF NOT EXISTS `devhouse`.`pedidos` (
     REFERENCES `devhouse`.`clientes` (`idclientes`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `devhouse`.`categorias`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `devhouse`.`categorias` (
+  `idcategorias` INT NOT NULL AUTO_INCREMENT,
+  `categoria` VARCHAR(45) NOT NULL,
+  `subcategoria` VARCHAR(45) NULL DEFAULT NULL,
+  `createdAt` DATETIME NULL,
+  `updateAt` DATETIME NULL,
+  PRIMARY KEY (`idcategorias`))
 ENGINE = InnoDB;
 
 
@@ -66,9 +81,16 @@ CREATE TABLE IF NOT EXISTS `devhouse`.`produtos` (
   `tamanho` VARCHAR(45) NULL DEFAULT NULL,
   `cor` VARCHAR(45) NULL DEFAULT NULL,
   `desconto` DECIMAL NULL DEFAULT NULL,
-  `create_date` DATETIME(10) NULL DEFAULT CURRENT_DATETIME,
-  `update_date` DATETIME(10) NULL DEFAULT NULL,
-  PRIMARY KEY (`idprodutos`))
+  `createdAt` DATETIME NULL,
+  `updateAt` DATETIME NULL DEFAULT NULL,
+  `id_produtos_categorias` INT NOT NULL,
+  PRIMARY KEY (`idprodutos`),
+  INDEX `fk_produtos_categorias1_idx` (`id_produtos_categorias` ASC) VISIBLE,
+  CONSTRAINT `fk_produtos_categorias1`
+    FOREIGN KEY (`id_produtos_categorias`)
+    REFERENCES `devhouse`.`categorias` (`idcategorias`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
@@ -126,7 +148,8 @@ CREATE TABLE IF NOT EXISTS `devhouse`.`admins` (
   `Nome` VARCHAR(50) NOT NULL,
   `email` VARCHAR(45) NOT NULL,
   `senha` VARCHAR(256) NOT NULL,
-  `create_time` DATETIME NULL DEFAULT CURRENT_DATETIME,
+  `createdAt` DATETIME NULL,
+  `updateAt` DATETIME NULL,
   PRIMARY KEY (`idadmin`))
 ENGINE = InnoDB;
 
@@ -138,7 +161,8 @@ CREATE TABLE IF NOT EXISTS `devhouse`.`logs` (
   `idlogs` INT NOT NULL,
   `acao_admin` VARCHAR(200) NOT NULL,
   `idadmin` INT NOT NULL,
-  `create_time` TIMESTAMP(10) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `createdAt` DATETIME NOT NULL,
+  `updateAt` DATETIME NULL,
   PRIMARY KEY (`idlogs`),
   INDEX `fk_logs_admins1_idx` (`idadmin` ASC) VISIBLE,
   CONSTRAINT `fk_logs_admins1`

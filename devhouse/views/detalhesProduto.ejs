@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <%-include('. /partials/head')%>
+        <link rel="stylesheet" type="text/css" id="applicationStylesheet" href="/stylesheets/produto.css" />
+</head>
+
+<body>
+    <%-include('. /partials/header')%>
+        <main>
+            <div class="head_cadastro">
+                <button class="button-back" onclick="back()"><i class="fa fa-arrow-left"
+                        style="font-size:35px;color:#FFFF05"></i></button>
+                <h1>
+                    <%=produto.categorias.categoria%> / <%=produto.categorias.subcategoria%>
+                </h1>
+
+            </div>
+
+
+
+            <form id="produto" method="POST" action="">
+                <div class="col">
+                    <img id='img_insert' src="<%=produto.imagem%>">
+                </div>
+                <div class="col">
+
+                    <div>
+                        <div style="color:#1C2E4A;font-size: 45px;">
+                            <%=produto.nome%>
+                        </div>
+                        <div style="font-style: italic;">Código: <%=produto.codigo%>
+                        </div>
+                    </div>
+
+
+                    <div style="color:#1C2E4A;font-size:50px;">R$
+                        <%=(Number(produto.preco).toFixed(2)).toLocaleString('pt-BR').replace('.',',')%>
+                    </div>
+
+                    <hr size="8" width="100%" color="#1C2E4A">
+
+                    <input type="hidden" name="codigo" value=<%=produto.codigo%>>
+                    <input type="hidden" name="temtamanho" value=<%=produto.tamanho==null?0:1%>>
+
+                    <%if(produto.tamanho !=null){%>
+
+
+
+                        <label>
+                            <h3>Escolher tamanho:</h3>
+                            <input type="radio" name="tamanho" value="PP">
+                            <label for="tamanho">PP</label>
+                            <input type="radio" name="tamanho" value="P">
+                            <label for="tamanho">P</label>
+                            <input type="radio" name="tamanho" value="M">
+                            <label for="tamanho">M</label>
+                            <input type="radio" name="tamanho" value="G">
+                            <label for="tamanho">G</label>
+                            <input type="radio" name="tamanho" value="GG">
+                            <label for="tamanho">GG</label>
+                        </label>
+                        <%}%>
+
+                            <label style="color:#1C2E4A;font-size:20px;">Quantidade: &nbsp;&nbsp; <input
+                                    style="width:20%;" class="input_text" type="number" name="quantidade"
+                                    id="quantidade" value="0"></label>
+
+
+                            <button class="btn-secondary" type="submit">Adicionar ao carrinho</button>
+
+                            <hr size="8" width="100%" color="#1C2E4A">
+
+                            <div style="color:#1C2E4A;font-size:20px;">Descrição</div>
+                            <p style="text-align:justify;">
+                                <%=produto.description%>
+                            </p>
+                            <div style="color:#1C2E4A;font-size:15px;">Propriedades</div>
+                            <p><span style="color:#1C2E4A; font-weight: bold;">Cor:</span>
+                                <%=produto.cor.toLowerCase()%>
+                            </p>
+                            <br>
+                </div>
+
+
+            </form>
+            <h1 id="emptyspace">AA</h1>
+
+            <div class="modal" id="modal" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Produto Adicionado ao Carrinho</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <!-- <div class="modal-body">
+              <p>Você gostaria de:</p>
+            </div> -->
+                        <div class="modal-footer">
+                            <button type="button" onclick="back()" class="btn btn-primary">Continuar Comprando</button>
+                            <button type="button" class="btn btn-primary">Finalizar Compra</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+        <%-include('. /partials/footer')%>
+</body>
+<script>
+    var pageToReturn = sessionStorage.getItem('page')
+    function back() {
+        location.href = pageToReturn
+    }
+
+
+
+    var formProduto = document.getElementById('produto')
+
+
+    formProduto.onsubmit = function (event) {
+        event.preventDefault()
+        localStorage.getItem("basket") == null ? localStorage.setItem("basket", JSON.stringify([])) : null
+        var basket = JSON.parse(localStorage.getItem("basket"))
+        var codigo = $("input[name='codigo']").val()
+        var qnt = $("input[name='quantidade']").val() != "0" ? Number($("input[name='quantidade']").val()) : alert("Adicionar a quantidade")
+        if ($("input[name='temtamanho']").val() == "1") {
+            var tamanho = $("input[name='tamanho']:checked").val() ? $("input[name='tamanho']:checked").val() : alert("Adicionar o tamanho")
+
+            if (tamanho && qnt) {
+                basket.push({
+                    codigo: codigo,
+                    tamanho: tamanho,
+                    qnt: qnt
+                })
+                localStorage.setItem("basket", JSON.stringify(basket))
+                $('#modal').modal('show')
+            }
+        } else {
+            if (qnt) {
+                basket.push({
+                    codigo: codigo,
+                    qnt: qnt
+                })
+                localStorage.setItem("basket", JSON.stringify(basket))
+                $('#modal').modal('show')
+
+            }
+
+
+        }
+
+    }
+
+
+</script>
+
+</html>

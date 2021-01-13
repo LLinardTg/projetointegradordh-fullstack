@@ -1,0 +1,357 @@
+* { margin: 0; padding: 0;
+}
+
+a:link {
+	text-decoration: none;
+	color: none;
+}
+  
+  a:visited {
+	text-decoration: none;
+	color: none;
+}
+
+
+.header-categorias {
+	height: 60px;
+	margin-top: 60px;
+	display: flex;
+	justify-content: center;
+	padding-top: 10px;	
+}
+
+#adesivo-circulo {
+	display: inline-block;
+	width: 37px;
+	height: 37px;
+	border-radius: 50%;
+	border-color: #1C2E4A;
+	border-style: solid;
+	margin-left: 30px;	
+}
+
+#camiseta-circulo {
+	display: inline-block;
+	width: 37px;
+	height: 37px;
+	border-radius: 50%;
+	border-color: #1C2E4A;
+	border-style: solid;
+	margin-left: 30px;	
+}
+
+#caneca-circulo {
+	display: inline-block;
+	width: 37px;
+	height: 37px;
+	border-radius: 50%;
+	border-color: #1C2E4A;
+	border-style: solid;
+	margin-left: 30px;
+}
+
+#chaveiro-circulo {
+	display: inline-block;
+	width: 37px;
+	height: 37px;
+	border-radius: 50%;
+	border-color: #1C2E4A;
+	border-style: solid;
+	margin-left: 30px;
+}
+
+
+
+
+
+
+
+#texto-botao-slide {
+	line-height:40px;
+	background-color: #1C2E4A;
+	text-align: center;
+	font-family: Lato;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 15px;
+	color: white;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	padding-top: auto;
+	padding-bottom: auto;
+	width: 150px;
+	height: 40px;
+}
+
+
+
+
+
+
+
+
+.imagem-produto-mais-vendido {
+	background-color: black;
+	display: block;
+	width: 279px;
+	height: 134px;
+	margin-left: auto;
+	margin-right: auto;
+	
+}
+
+#titulo-produto-mais-vendido {
+	width: 69px;
+	display: block;
+	white-space: nowrap;
+	text-align: center;
+	font-family: Lato;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 15px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#preco-produto-mais-vendido {
+	display: block;
+	text-align: center;
+	font-family: Lato;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 12px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 20px;
+
+}
+
+#texto-botao-mais-vendido {
+	line-height:40px;
+	background-color: #1C2E4A;
+	text-align: center;
+	font-family: Lato;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 15px;
+	color: white;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	padding-top: auto;
+	padding-bottom: auto;
+	width: 150px;
+	height: 40px;
+}
+
+.inscrever {
+	background-color: #1C2E4A;
+	width: 100%;
+	height: 109px;
+	top: 727px;
+	padding-top: 20px;
+}
+
+#titulo-inscrever {
+	color: #FFFF05;
+	top: 20px;
+	width: 303px;
+	text-align: center;
+	font-family: Lato;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 14px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 20px;
+}
+
+#texto-botao-inscrever {
+	background-color: #FFFF05;
+	line-height:40px;
+	text-align: center;
+	font-family: Lato;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 15px;
+	color: #1C2E4A;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	padding-top: auto;
+	padding-bottom: auto;
+	width: 150px;
+	height: 40px;
+}
+
+.footer {
+	background-color: #EBEBEB;
+	height: 100px;
+	padding-left: 20%;
+	padding-right: 20%;
+	padding-top: 20px;
+}
+
+#titulo-site-footer {
+	text-align: left;
+	font-family: Lato;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 15px;
+	margin-bottom: 20px;
+}
+
+#endereco-site-footer {
+	text-align: left;
+	font-family: Noto Sans;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 12px;
+	margin-bottom: 20px;
+}
+
+#copy-site-footer {
+	text-align: center;
+	font-family: Noto Sans;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 11px;
+	margin-left: auto;
+	margin-right: auto;	
+}
+
+.itens svg{
+	font-size: 6vmin;
+	cursor: pointer;
+}
+
+
+
+.itens {
+    display: flex;
+    border-radius: 60px;
+    box-shadow: 0px 0px 2px #1C2E4A;
+    width: 12vmin;
+    height: 12vmin;
+    text-align: center;
+    align-items: center;
+	justify-content: center;
+	background-color: white;
+    /* padding: 0.5em 0.8em 0.5em 0.6em; */
+}
+
+.categoria_itens{
+	display: inline-block;
+	text-align: center;
+	color:#1C2E4A
+}
+
+
+.header-categorias-texto {
+	display: flex;
+	justify-content: space-between;
+	padding: 10px;
+	margin: 0px 30%;
+
+}
+
+main{
+
+	background: transparent url('../images/background2.jpg') 0% 0% no-repeat padding-box;
+	background-size: cover;
+}
+
+.slide {
+	display: flex;
+	background-color: #f4f4f4;
+	justify-content: space-around;
+	flex-direction: column;
+	align-items: center;
+	padding: 20px;
+
+	/* height: 150px;
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+	padding-top: 20px; */
+
+	border-color: #1C2E4A;
+	border-top: solid;
+
+
+
+}
+
+#descricao-slide {
+	text-align: center;
+	font-family: Lato, regular;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 30px;
+	color: #3D3D3D;
+	margin:20px;
+}
+
+#titulo-slide {
+	text-align: center;
+	font: normal normal 300 56px/66px Lato;
+	color: #3D3D3D;
+	margin:20px;
+
+}
+
+#titulo-mais-vendidos {
+	font: normal normal 300 56px/66px Lato;
+	font-size: 30px;
+}
+
+
+
+
+.mais-vendido {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+
+	background-color: #EBEBEB;
+	background: transparent url('../images/background.jpg') 0% 0% no-repeat padding-box;
+	border-color: #1C2E4A;
+	border-top: solid;
+	padding: 20px;
+	/* width: 100%;
+	height: 380px;
+	padding-top: 20px; */
+	background-size: cover;
+
+
+}
+
+.favoritos{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	/* align-items: center; */
+	text-align: center;
+	margin: 10px;
+	font-size: 16px;
+
+}
+
+.favoritos img {
+    width: 20vw;
+	height: 40vh;
+	background-color: white;
+}
+
+.produto{
+	padding: 15px;
+}
+
+#descricao-mais-vendidos {
+	font-family: Lato;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 20px;
+}
