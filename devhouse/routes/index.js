@@ -10,5 +10,6 @@ router.get('/', function(req, res, next) {
 router.get('/produtos/:categoria?/:subcategoria?', indexController.loadAllProducts);
 router.get('/buscar', indexController.busca);
 router.get('/categoriesload', indexController.loadAllCategories);
+router.get('/produto/:codigo', indexController.loadProductById);
 
 module.exports = router;

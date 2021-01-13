@@ -12,6 +12,10 @@ module.exports = (sequelize, DataTypes)=>{
         tableName:'admins'
     })
 
+    adm.associate =(models) =>{
+        adm.hasMany(models.Log,{foreignKey:'idadmin',as:'administrador'})
+    }
+
 
     return adm
 }

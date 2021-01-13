@@ -208,7 +208,7 @@ label {
     margin: 1%;
     justify-content: center;
     width: 230px;
-    height: 370px;
+    height: 320px;
 }
 
 .Produtos_produto_img {
@@ -334,6 +334,26 @@ a:-webkit-any-link {
     content: "";
     width: 550px;
 }
+
+
+.Produtos_galeria {
+    display: grid;
+    /* flex-wrap: wrap; */
+    /* justify-content: space-between; */
+    width: 65vw;
+    grid-column-gap: 10px;
+    grid-row-gap: 20px;
+    grid-template-columns: 15% 15% 15% 15%
+}
+
+.Produtos_header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 73vw;
+}
+
 
 @media(max-width:1500px) {
     .Produtos_galeria::after {

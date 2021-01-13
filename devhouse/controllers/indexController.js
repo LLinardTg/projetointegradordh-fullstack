@@ -128,6 +128,43 @@ indexController = {
             color: color.map(c => c.dataValues)
         }
         res.render('produtos', infos)
+    },
+    loadProductById: async (req,res)=>{
+        var codigo = req.params.codigo
+        
+
+        var produto = await Produto.findOne({
+            include: 'categorias',
+            where: {
+                codigo:codigo
+            }
+        })
+        var produtos = await Produto.findAll({
+            include: 'categorias'
+        })
+        var cor = []
+        var categorias = []
+        var subcategorias = []
+        produtos.forEach(prod => {
+            cor.push({ 
+                color: (prod.dataValues.cor),
+                hexcolor: (prod.dataValues.hexcor)
+            })
+            categorias.push(prod.dataValues.categorias.dataValues.categoria)
+            subcategorias.push(prod.dataValues.categorias.dataValues.subcategoria)
+        });
+        produto=JSON.parse(JSON.stringify(produto))
+    
+        console.log(produto)
+        var infos = {
+            title: 'Produto',
+            produto:produto,
+            cor: cor.filter((v, i, a) => a.findIndex(t => (t.color === v.color && t.hexcolor === v.hexcolor)) === i),
+            categorias: [...new Set(categorias)],
+            subcategorias: [...new Set(subcategorias)]
+        }
+
+        res.render('detalhesProduto',infos)
     }
 
 }

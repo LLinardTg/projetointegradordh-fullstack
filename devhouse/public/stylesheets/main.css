@@ -103,3 +103,7 @@ h5 {
     height: 32px;
     font-family: "Lato";
 }
+
+textarea {
+    height: 100%;
+}

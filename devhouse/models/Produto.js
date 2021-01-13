@@ -26,14 +26,17 @@ module.exports = (sequelize, DataTypes)=>{
             type: DataTypes.DECIMAL,
             allowNull:true
         },
-        id_produtos_categorias:DataTypes.INTEGER
+        id_produtos_categorias:DataTypes.INTEGER,
+        description:DataTypes.TEXT
     },{
         tableName:'produtos'
     })
 
     produto.associate = (models)=> {
         produto.belongsTo(models.Categoria,{foreignKey:'id_produtos_categorias',as:'categorias'})
+        pedido.belongsToMany(models.Pedido, { through: 'Pedidoproduto', foreignKey: 'idprodutos', as: 'pedidos' })
     }
+
 
     return produto
 }

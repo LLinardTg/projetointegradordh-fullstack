@@ -15,6 +15,7 @@ body{
 
 h1{
 	text-align: center;
+	
 }
 
 
@@ -104,6 +105,7 @@ a:link
 h2{
 	margin: 10px;
 	text-align: center;
+	
 }
 
 .error_message{
@@ -113,4 +115,21 @@ h2{
 .user_create{
 	text-align: center;
 	background-color:#FFFF05;
+}
+
+.button-back {
+    background-color: #1C2E4A;
+    border-radius: 50px;
+    padding: 8px 12px 8px 12px;
+}
+
+.head_cadastro{
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+    padding: 10px;
+    width: 90%;
+    justify-content: flex-start;
+
+
 }

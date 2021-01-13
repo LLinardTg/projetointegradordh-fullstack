@@ -9,7 +9,12 @@
 <body>
     <%-include('./partials/header')%>
     <main>
-    <h1>EDITAR PRODUTO</h1>
+        <div class="head_cadastro">
+            <button class="button-back" onclick="location.href=sessionStorage.getItem('page')"><i class="fa fa-arrow-left" style="font-size:35px;color:#FFFF05"></i></button>
+            <h1>EDITAR PRODUTO</h1>
+   
+</div>
+    
     <form id="cadastro_produto" method="POST" action="/adm/editarproduto/salvar" enctype="multipart/form-data">
         <div class="col">
             <h3>Foto</h3>
@@ -33,7 +38,8 @@
             <input class="input_text" type="number" name="quantidade" id="quantidade" placeholder="Digite a quantidade" value="<%=produto.quantidade%>">
             <h3>Desconto</h3>
             <input class="input_text" type="number" name="desconto" id="desconto" placeholder="Digite o desconto" value="<%=produto.desconto%>">
-            
+            <h3>Descrição</h3>
+            <textarea class="input_text" rows="5"  style="height: 100%;" id="description" name="description"><%=produto.description%></textarea>
             <h3>Cor</h3>
             <div class="row">
                 <div class="color_picker">
@@ -86,6 +92,10 @@
 <%-include('./partials/footer')%>
 </body>
 <script>
+    
+        function back(){
+        window.location.href=sessionStorage.getItem("page")
+    }
     function onChangeImage(){
        var filename= document.getElementById("validatedCustomFile").value.split('\\')[document.getElementById("validatedCustomFile").value.split('\\').length-1]
        var file= '/images/produtos/'+filename

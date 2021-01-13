@@ -37,6 +37,37 @@
         .btn-primary{
             width: 100%;
         }
+        .button-back {
+    background-color: #1C2E4A;
+    border-radius: 50px;
+    padding: 8px 12px 8px 12px;
+    /* width: 9%; */
+    /* margin: 10px; */
+    /* margin: auto; */
+}
+main{
+    margin-top: 10px;
+}
+
+
+#header_title {
+    display: flex;
+    flex-direction: row;
+    /* justify-content: center; */
+    align-items: center;
+    /* margin: auto; */
+    margin: 10px 0px 10px 0px;
+}
+.Produtos_header_titulo {
+    /* flex-grow: 2; */
+    margin: auto;
+    align-items: center;
+
+}
+#formbusca{
+    display:inherit;
+    align-items: center;
+}
     </style>
 </head>
 
@@ -44,11 +75,19 @@
     <%-include('./partials/header')%>
     <main>
         <div class="Produtos">
+            <div id="header_title"> 
+            <button class="button-back" onclick="back()"><i class="fa fa-arrow-left" style="font-size:35px;color:#FFFF05"></i></button>
+            <h1 class="Produtos_header_titulo"><%=title%></h1>
+        </div>
             <div class="Produtos_header">
-                <h1 class="Produtos_header_titulo"><%=title%></h1>
-                <form action="buscarproduto" method="GET">
+                
+                
+                <form id="formbusca" action="buscarproduto" method="GET">
                     <input class="input_text" type="text" name="q" placeholder="buscar um produto">
+                    <button class="btn-primary" type="submit">buscar</button>
+                    <button class="btn-secondary" style="padding: 0px 10px;" onclick="location.href=location.origin+'/adm/editarproduto'">clear</button>
                 </form>
+                
                 <div class="Produtos_header_ordem">
                     <span>Ordenar por:</span>
                     <select id="order" name="select" onchange="javascript:handleSelect(this)">
@@ -76,9 +115,9 @@
                         <div class="Produtos_produto_name">Desconto:   <%=produto.desconto?produto.desconto:'Não se aplica'%></div>
                     </div>
                     <div class="Produto_buttons">
-                    <button class="btn-primary" onclick="location.href='editarproduto/<%=produto.idprodutos%>'">Editar </button>
+                    <button class="btn-primary" onclick="onedit(<%=produto.idprodutos%>)">Editar </button>
                     <button 
-                        class="btn-primary" onclick="location.href='deletarproduto/<%=produto.idprodutos%>'">Deletar</button>
+                        class="btn-primary" onclick="ondelete(<%=produto.idprodutos%>)">Deletar</button>
                     </div>
                 </article>
                 <%})%>
@@ -96,6 +135,22 @@
     <%-include('./partials/footer')%>
 </body>
 <script>
+
+    function back(){
+            location.href=location.origin + "/adm"
+        
+    }
+
+    function onedit(edit){
+        sessionStorage.setItem('page',document.URL)
+        location.href='editarproduto/'+edit;
+        
+    }
+    function ondelete(del){
+        fetch('deletarproduto/'+del)
+        location.href=document.URL
+    }
+    
 
     var maxPage = $(".Produtos_pagination_pointend")[0].href.split("#")[1]
 

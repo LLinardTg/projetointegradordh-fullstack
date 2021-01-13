@@ -4,28 +4,50 @@
 
 <head>
     <%-include('./partials/head')%>
-    <link rel="stylesheet" href="/stylesheets/home.css">
+	<link rel="stylesheet" href="/stylesheets/home.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/fontawesome.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" integrity="sha512-F5QTlBqZlvuBEs9LQPqc1iZv2UMxcVXezbHzomzS6Df4MZMClge/8+gXrKw2fl5ysdk4rWjR0vKS7NNkfymaBQ==" crossorigin="anonymous"></script>
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;400&display=swap" rel="stylesheet">
+
+
+
 </head>
 
+
 <body>
-    <%-include('./partials/header')%>
+	<%-include('./partials/header')%>
+	<main>
 	
 	<div class="header-categorias-texto">
 		
-		<div id="Adesivos">
-			<span>Adesivos</span>
+		<div  class="categoria_itens" id="Adesivos">
+			<a href="/produtos/Adesivo" class="itens">
+			<i class="fas fa-sticky-note"></i>
+		</a>
+			<div>Adesivos</div>
 		</div>
 
-		<div id="Camisetas">
-			<span>Camisetas</span>
+		<div class="categoria_itens" id="Camisetas">
+			<a href="/produtos/Camiseta" class="itens">
+			<i class="fas fa-tshirt"></i>
+		</a>
+			<div>Camisetas</div>
 		</div>
 
-		<div id="Canecas">
-			<span>Canecas</span>
+		<div href="/produtos/Caneca" class="categoria_itens" id="Canecas">
+			<a class="itens">
+			<i class="fas fa-mug-hot"></i>
+			</a>
+			<div>Canecas</div>
 		</div>
 
-		<div id="Chaveiros">
-			<span>Chaveiros</span>
+		<div class="categoria_itens" id="Chaveiros">
+			<a class="itens">
+			<i class="fas fa-key"></i>
+			
+		</a>
+		<div>Chaveiros</div>
 		</div>
 	
 	</div>
@@ -40,11 +62,14 @@
 			<span>Resolvemos transformar essas histórias em produtos SUPER MANEIROS!</span>
 		</div>
 
-		<a href="#loja">
+		<button style="width: 12vw;" onclick="location.href='/produtos'" class="btn-primary">VER PRODUTOS</button>
+
+		<!-- <a href="#loja">
 
 		<div id="texto-botao-slide">
 			<span>VER PRODUTOS</span>
-		</div></a>
+		</div></a> -->
+
 	</div>
 	
 	<div class="mais-vendido">
@@ -58,29 +83,53 @@
 			<span>Os mais querido por nossos Devs</span>
 		</div>
 
-		<div class="produto-mais-vendido">
+		<div class="favoritos">
 
-			<div class="imagem-produto-mais-vendido"></div>
+		<div class="produto">
 
-			<div id="titulo-produto-mais-vendido">
-			<span>Produto X</span>
-			</div>
 
-			<div id="preco-produto-mais-vendido">
-			<span>R$19,90</span>
-			</div>
 
-			<a href="#comprar">
-			<div id="texto-botao-mais-vendido">
-			<span>COMPRAR</span>
-			</div></a>
+		<img src="/images/produtos/caneca5.jpg" alt="imagem">
 
-		</div>
+		<div>Caneca</div>
+
+		<div>R$35,00</div>
 
 	</div>
+
+	<div class="produto">
+
+		<img src="/images/produtos/htmlcamiseta.jpeg" alt="imagem">
+
+		<div>Camiseta</div>
+
+		<div>R$30,00</div>
+
+	</div>
+
+	<div class="produto">
+
+		<img src="/images/produtos/java.png" alt="imagem">
+
+		<div>Adesivo</div>
+
+		<div>R$5,00</div>
+
+	</div>
+</div>
+
+
+
+			<!-- <button style="width: 12vw;" class="btn-primary">COMPRAR</button> -->
+
+
+	</div>
+
 	
 	<%-include('./partials/footer')%>
+
 	
 	</div>
+</main>
 </body>
 </html>

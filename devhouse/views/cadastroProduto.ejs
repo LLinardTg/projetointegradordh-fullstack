@@ -9,7 +9,11 @@
 <body>
     <%-include('./partials/header')%>
     <main>
-    <h1>CADASTRO DE PRODUTO</h1>
+        <div class="head_cadastro">
+            <button class="button-back" onclick="back()"><i class="fa fa-arrow-left" style="font-size:35px;color:#FFFF05"></i></button>
+            <h1>CADASTRO DE PRODUTO</h1>)
+   
+</div>
     <form id="cadastro_produto" method="POST" action="/adm/cadastrarproduto" enctype="multipart/form-data">
         <div class="col">
             <h3>Foto</h3>
@@ -39,6 +43,8 @@
             <input class="input_text" type="number" name="preco" id="preco" step="0.01" placeholder="Digite o preco">
             <h3>Quantidade</h3>
             <input class="input_text" type="number" name="quantidade" id="quantidade" placeholder="Digite a quantidade">
+            <h3>Descrição</h3>
+            <textarea class="input_text" rows="5"  style="height: 100%;" id="description" name="description"></textarea>
             <h3>Tamanho</h3>
             <label>
                 <input type="radio" name="tamanho" value="PP">
@@ -102,6 +108,9 @@
 <%-include('./partials/footer')%>
 </body>
 <script>
+    function back(){
+        window.location.href=window.location.origin+"/adm"
+    }
     function onChangeImage(){
        var filename= document.getElementById("validatedCustomFile").value.split('\\')[document.getElementById("validatedCustomFile").value.split('\\').length-1]
        var file= '/images/produtos/'+filename
@@ -125,6 +134,7 @@
             document.getElementById("nome").value=res.nome
             document.getElementById("preco").value=res.preco
             document.getElementById("quantidade").value=res.quantidade
+            document.getElementById("description").value=res.description
             document.getElementById("input_color").value=res.hexcor
             document.getElementById("colorname").value=res.cor
             document.getElementById("categoria").value=res.categorias.categoria

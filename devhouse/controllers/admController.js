@@ -41,14 +41,13 @@ const admController = {
                 codigo: codigo
             }
         })
+        console.log(produto)
         res.send(produto)
-
-
     },
     storeProduct: async (req, res) => {
         console.log(req.body)
 
-        var { codigo, nome, preco, quantidade, tamanho, hexcolor, colorname, categoria, subcategoria } = req.body
+        var { codigo, nome, preco, quantidade,  description , tamanho, hexcolor, colorname, categoria, subcategoria } = req.body
         codigo = typeof (codigo) == 'string' ? codigo : codigo[1]
         nome = typeof (nome) == 'string' ? nome : nome[1]
         categoria = typeof (categoria) == 'string' ? categoria : categoria[0]
@@ -95,7 +94,8 @@ const admController = {
             tamanho: tamanho,
             cor: colorname,
             hexcor: hexcolor,
-            id_produtos_categorias: idcategorias
+            id_produtos_categorias: idcategorias,
+            description: description
         })
 
         res.redirect('/adm/cadastrarproduto')
@@ -140,7 +140,7 @@ const admController = {
     },
     deslogar: (req,res)=>{
         req.session.admuser = undefined
-        res.send('Administrador deslogado!!!')
+        res.render('login_adm',{title: 'login'})
     },
     editProduct: async (req,res)=>{
         var  {count:total,rows:produtos} = await Produto.findAndCountAll({
@@ -234,7 +234,7 @@ const admController = {
         },
         saveEdits: async (req,res)=>{
             console.log(req.body)
-            var { codigo, nome, preco, quantidade, tamanho, hexcolor, colorname, categoria, subcategoria } = req.body
+            var { codigo, nome, preco, quantidade, desconto, description, hexcolor, colorname, categoria, subcategoria } = req.body
             codigo = typeof (codigo) == 'string' ? codigo : codigo[1]
             nome = typeof (nome) == 'string' ? nome : nome[1]
             categoria = typeof (categoria) == 'string' ? categoria : categoria[0]
@@ -249,7 +249,10 @@ const admController = {
                 })
                 hexcolor=hexcolor.dataValues.hexcor
             }
-            tamanho = tamanho == 'NULL' ? null : tamanho
+            //tamanho = tamanho == 'NULL' ? null : tamanho
+            console.log(typeof(desconto))
+            desconto=typeof(desconto)=='number'?desconto:null
+
     
             var idcategorias = await Categoria.findAll({
                 where: {
@@ -275,7 +278,7 @@ const admController = {
             }else{
                 img = '/images/produtos/' + req.body.image;
             }
-            console.log(img)
+            console.log(description)
 
             if(req.body.aplicartodos){
                 Produto.update({
@@ -283,7 +286,8 @@ const admController = {
                     preco: Number(preco),
                     imagem: img,
                     quantidade: Number(quantidade),
-                    tamanho: tamanho,
+                    desconto: desconto,
+                    description:description,
                     cor: colorname,
                     hexcor: hexcolor,
                     id_produtos_categorias: idcategorias
@@ -299,7 +303,8 @@ const admController = {
                     preco: Number(preco),
                     imagem: img,
                     quantidade: Number(quantidade),
-                    tamanho: tamanho,
+                    desconto: desconto,
+                    description:description,
                     cor: colorname,
                     hexcor: hexcolor,
                     id_produtos_categorias: idcategorias
@@ -309,13 +314,13 @@ const admController = {
                     }
                 })
             }
-            res.send("produto editado!")
+            res.render('redirectpage',{title:'redirect'})
         },
         deleteProduct: async (req,res)=>{
             await Produto.destroy({
                 where:{idprodutos:req.params.id}
             })
-            res.redirect('../editarproduto')
+            //res.redirect('../editarproduto')
 
         }
 

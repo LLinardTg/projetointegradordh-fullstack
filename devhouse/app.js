@@ -27,7 +27,7 @@ app.use(session(
     secret: "secret devhouse",
     resave: true,
     saveUninitialized: true,
-    cookie:{maxAge:360000}
+    cookie:{maxAge:36000000}
   }))
 
 app.use('/', indexRouter);
