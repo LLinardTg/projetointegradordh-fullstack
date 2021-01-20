@@ -1,40 +1,40 @@
-module.exports = (sequelize, DataTypes)=>{
-    const produto = sequelize.define('Produto',{
-        idprodutos:{
+module.exports = (sequelize, DataTypes) => {
+    const produto = sequelize.define('Produto', {
+        idprodutos: {
             type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true
         },
         codigo: DataTypes.STRING,
-        nome:DataTypes.STRING,
-        preco:DataTypes.DECIMAL,
-        imagem:DataTypes.STRING,
+        nome: DataTypes.STRING,
+        preco: DataTypes.DECIMAL,
+        imagem: DataTypes.STRING,
         quantidade: DataTypes.INTEGER,
-        tamanho:{
+        tamanho: {
             type: DataTypes.STRING,
-            allowNull:true
+            allowNull: true
         },
-       cor:{
+        cor: {
             type: DataTypes.STRING,
-            allowNull:true
+            allowNull: true
         },
-        hexcor:{
+        hexcor: {
             type: DataTypes.STRING,
-            allowNull:true
+            allowNull: true
         },
-        desconto:{
+        desconto: {
             type: DataTypes.DECIMAL,
-            allowNull:true
+            allowNull: true
         },
-        id_produtos_categorias:DataTypes.INTEGER,
-        description:DataTypes.TEXT
-    },{
-        tableName:'produtos'
+        id_produtos_categorias: DataTypes.INTEGER,
+        description: DataTypes.TEXT
+    }, {
+        tableName: 'produtos'
     })
 
-    produto.associate = (models)=> {
-        produto.belongsTo(models.Categoria,{foreignKey:'id_produtos_categorias',as:'categorias'})
-        pedido.belongsToMany(models.Pedido, { through: 'Pedidoproduto', foreignKey: 'idprodutos', as: 'pedidos' })
+    produto.associate = (models) => {
+        produto.belongsTo(models.Categoria, { foreignKey: 'id_produtos_categorias', as: 'categorias' })
+        produto.belongsToMany(models.Pedido, { through: 'Pedidoproduto', foreignKey: 'idprodutos', as: 'pedidos' })
     }
 
 

@@ -1,19 +1,19 @@
 module.exports = (sequelize, DataTypes) => {
     const pedidoproduto = sequelize.define('Pedidoproduto', {
         idpedidos_produtos: {
-            type: Sequelize.INTEGER,
+            type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true
         },
         idpedidos: {
-            type: Sequelize.INTEGER,
+            type: DataTypes.INTEGER,
             references: {
                 model: 'pedidos',
                 key: 'idpedidos'
             }
         },
         idprodutos: {
-            type: Sequelize.INTEGER,
+            type: DataTypes.INTEGER,
             references: {
                 model: 'produtos',
                 key: 'idprodutos'

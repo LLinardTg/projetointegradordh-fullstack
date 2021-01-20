@@ -1,15 +1,15 @@
 module.exports = (sequelize, DataTypes) => {
     const favorito = sequelize.define('Favorito', {
         idfavoritos: {
-            type: Sequelize.INTEGER,
+            type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true
         },
         idpedidos: {
-            type: Sequelize.INTEGER,
+            type: DataTypes.INTEGER,
         },
         idprodutos: {
-            type: Sequelize.INTEGER,
+            type: DataTypes.INTEGER,
         }
     }, {
         tableName: "favoritos"

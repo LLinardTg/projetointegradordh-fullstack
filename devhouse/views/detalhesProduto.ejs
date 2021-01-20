@@ -2,18 +2,19 @@
 <html lang="pt">
 
 <head>
-    <%-include('. /partials/head')%>
+    <%-include('./partials/head')%>
         <link rel="stylesheet" type="text/css" id="applicationStylesheet" href="/stylesheets/produto.css" />
 </head>
 
 <body>
-    <%-include('. /partials/header')%>
+    <%-include('./partials/header')%>
         <main>
             <div class="head_cadastro">
                 <button class="button-back" onclick="back()"><i class="fa fa-arrow-left"
                         style="font-size:35px;color:#FFFF05"></i></button>
                 <h1>
-                    <%=produto.categorias.categoria%> / <%=produto.categorias.subcategoria%>
+                    <%=produto.categorias.categoria%> /
+                        <%=produto.categorias.subcategoria%>
                 </h1>
 
             </div>
@@ -30,7 +31,8 @@
                         <div style="color:#1C2E4A;font-size: 45px;">
                             <%=produto.nome%>
                         </div>
-                        <div style="font-style: italic;">Código: <%=produto.codigo%>
+                        <div style="font-style: italic;">Código:
+                            <%=produto.codigo%>
                         </div>
                     </div>
 
@@ -52,14 +54,14 @@
                             <h3>Escolher tamanho:</h3>
                             <input type="radio" name="tamanho" value="PP">
                             <label for="tamanho">PP</label>
-                            <input type="radio" name="tamanho" value="P">
-                            <label for="tamanho">P</label>
-                            <input type="radio" name="tamanho" value="M">
-                            <label for="tamanho">M</label>
-                            <input type="radio" name="tamanho" value="G">
-                            <label for="tamanho">G</label>
-                            <input type="radio" name="tamanho" value="GG">
-                            <label for="tamanho">GG</label>
+                        <input type="radio" name="tamanho" value="P">
+                        <label for="tamanho">P</label>
+                        <input type="radio" name="tamanho" value="M">
+                        <label for="tamanho">M</label>
+                        <input type="radio" name="tamanho" value="G">
+                        <label for="tamanho">G</label>
+                        <input type="radio" name="tamanho" value="GG">
+                        <label for="tamanho">GG</label>
                         </label>
                         <%}%>
 
@@ -108,10 +110,11 @@
             </div>
 
         </main>
-        <%-include('. /partials/footer')%>
+        <%-include('./partials/footer')%>
 </body>
 <script>
     var pageToReturn = sessionStorage.getItem('page')
+
     function back() {
         location.href = pageToReturn
     }
@@ -121,7 +124,7 @@
     var formProduto = document.getElementById('produto')
 
 
-    formProduto.onsubmit = function (event) {
+    formProduto.onsubmit = function(event) {
         event.preventDefault()
         localStorage.getItem("basket") == null ? localStorage.setItem("basket", JSON.stringify([])) : null
         var basket = JSON.parse(localStorage.getItem("basket"))
@@ -154,8 +157,6 @@
         }
 
     }
-
-
 </script>
 
 </html>

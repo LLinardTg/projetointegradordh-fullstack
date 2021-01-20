@@ -1,54 +1,55 @@
-module.exports = (sequelize, DataTypes)=>{
+module.exports = (sequelize, DataTypes) => {
     const cliente = sequelize.define('Cliente', {
         idclientes: {
-          type: Sequelize.INTEGER,
-          primaryKey: true,
-          autoIncrement: true
+            type: DataTypes.INTEGER,
+            primaryKey: true,
+            autoIncrement: true
         },
-        Nome:{
-          type:Sequelize.STRING,
-          allowNull:false
+        Nome: {
+            type: DataTypes.STRING,
+            allowNull: false
         },
         Telefone: {
-          type:Sequelize.INTEGER,
-          allowNull:false
+            type: DataTypes.INTEGER,
+            allowNull: false
         },
-        Endereco:{
-          type: Sequelize.TEXT,
-          allowNull: false
+        Endereco: {
+            type: DataTypes.TEXT,
+            allowNull: false
         },
         Email: {
-          type:Sequelize.STRING,
-          allowNull: false
+            type: DataTypes.STRING,
+            allowNull: false
         },
-        Senha:{
-          type:Sequelize.STRING(256),
-          allowNull: false
+        Senha: {
+            type: DataTypes.STRING(256),
+            allowNull: false
         },
         Cpf: {
-          type: Sequelize.INTEGER,
-          allowNull:false
+            type: DataTypes.INTEGER,
+            allowNull: false
         },
-        DataNasc:{
-          type:Sequelize.DATEONLY,
-          allowNull:false
-        }, 
+        DataNasc: {
+            type: DataTypes.DATEONLY,
+            allowNull: false
+        },
         sexo: {
-          type:Sequelize.STRING,
-          allowNull:false},
-        Cep: {
-          type:Sequelize.INTEGER,
-          allowNull:false
+            type: DataTypes.STRING,
+            allowNull: false
         },
-        createdAt: Sequelize.DATE,
-        updatedAt: Sequelize.DATE
-      },{
-        tableName:'clientes'
+        Cep: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
+        createdAt: DataTypes.DATE,
+        updatedAt: DataTypes.DATE
+    }, {
+        tableName: 'clientes'
     })
 
-    cliente.associate =(models) =>{
-      cliente.hasMany(models.Pedido,{foreignKey:'idclientes',as:'pedidos'})
-  }
+    cliente.associate = (models) => {
+        cliente.hasMany(models.Pedido, { foreignKey: 'idclientes', as: 'pedidos' })
+    }
 
     return cliente
 

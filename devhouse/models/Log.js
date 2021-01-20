@@ -1,23 +1,24 @@
-module.exports = (sequelize, DataTypes)=>{
-    const log= sequelize.define('Log',{ 
+module.exports = (sequelize, DataTypes) => {
+    const log = sequelize.define('Log', {
         idlogs: {
-          type: Sequelize.INTEGER,
-          primaryKey: true,
-          autoIncrement: true
+            type: DataTypes.INTEGER,
+            primaryKey: true,
+            autoIncrement: true
         },
-        acaoadmins:{
-          type: Sequelize.TEXT,
-          allowNull:false
+        acaoadmins: {
+            type: DataTypes.TEXT,
+            allowNull: false
         },
-        idadmin:{
-          type: Sequelize.INTEGER,
-        }},{
-        tableName:'logs'
+        idadmin: {
+            type: DataTypes.INTEGER,
+        }
+    }, {
+        tableName: 'logs'
     })
 
 
-    log.associate = (models)=> {
-        log.belongsTo(models.Adm,{foreignKey:'idadmin',as:'administrador'})
+    log.associate = (models) => {
+        log.belongsTo(models.Adm, { foreignKey: 'idadmin', as: 'administrador' })
     }
 
     return log
