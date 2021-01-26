@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+    <%-include('./partials/head')%>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/stylesheets/carrinho.css">
+</head>
+
+<body>
+    <%-include('./partials/header')%>
+
+        <section class="box">
+            <div class="box-caixa">
+                <div class="produtos-carrinho">
+                    <!-- <div class="galeria_produtos">
+                        <div class="produto">
+                            <div class="img-produto-carrinho">
+                                <img src="/images/produtos/canecaVermelha.jpg" class="img-responsive center">
+                            </div>
+                            <div class="infos">
+                                <h4>Caneca Vermelha - Ceramica </h4>
+                                <strong>Cor:</strong> <span> Vermelha </span> <br>
+                                <strong>Tamanho:</strong> <span>Grande</span> <br>
+                                <strong>Material:</strong> <span>Ceramica</span>
+                            </div>
+
+                            <div class="quant">
+                                <label for="">Quantidade</label>
+                                <input type="number" class="form-control" min="1">
+                            </div>
+                            <div class="valor">
+                                <b>R$20,00</b>
+                            </div>
+                            <button class="delete"><i class="fa fa-trash-o" style="font-size:24px"></i></button>
+                            
+                        </div>
+                    </div> -->
+                </div>
+                <div class="sub-tutorial">
+                    <div class="resumo-compra">
+                        <h4 style="color:#FFFF05">Resumo da Compra</h4>
+                        <ul class="">
+                            <li>
+                                <strong>Subtotal</strong>
+                                <div id="subtotal">R$36,00</div>
+                            </li>
+                            <div class="linha"></div>
+                            <li>
+                                <strong>Desconto</strong>
+                                R$0
+                            </li>
+                            <div class="linha"></div>
+                            <li>
+                                <strong>Frete</strong>
+                                R$0
+                            </li>
+                            <div class="linha"></div>
+                            <li>
+                                <strong>Total</strong>
+                                <div id="total">R$36,00</div>
+                            </li>
+                        </ul>
+                        <button class="btn-secondary">Próximo Passo</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Última versão JavaScript compilada e minificada -->
+        <!-- <%-include('./partials/footer')%> -->
+
+</body>
+<script>
+    var galeria=document.querySelectorAll(".produtos-carrinho")[0]
+    function createProduct(product,tamanho,qnt){
+            var element=document.createElement("div")
+            element.classList.add("galeria_produtos")
+            var html=""
+
+            html=html+'<div class="produto">'+'<div class="img-produto-carrinho">'+'<img src="'+product.imagem+'" class="img-responsive center">'+'</div>'+'<div class="infos">'+'<h4>'+ product.nome +'</h4>'+'<strong>Cor:</strong> <span>'+product.cor+'</span> <br>'
+            html=tamanho != null? html+'<strong>Tamanho:</strong> <span>'+tamanho+'</span> <br>':html
+            html=html+'</div>'+'<div class="quant">'+'<label for="">Quantidade</label>'+'<input type="number" class="form-control" min="1" value='+qnt+'>'+'</div>'+'<div class="valor">'+'<b>R$'+product.preco+',00</b>'+'</div>'+'<button class="delete"><i class="fa fa-trash-o" style="font-size:24px"></i></button>'+'</div>'+'</div>'
+
+            element.innerHTML=html
+            return element
+
+    }
+
+    if(localStorage.basket){
+        var total=0
+        var basket = JSON.parse(localStorage.basket)
+        for(let p of basket){
+            fetch(window.location.origin+'/adm/produto/'+p.codigo)
+            .then(res=>res.json())
+            .then(res=>{
+                var product=createProduct(res,p.tamanho?p.tamanho:null,p.qnt)
+                galeria.appendChild(product)
+                total=total+(p.qnt*res.preco)
+                document.getElementById("subtotal").innerText="R$"+total+",00"
+                document.getElementById("total").innerText="R$"+total+",00"
+            })
+        }
+
+    }
+</script>
+
+</html>

@@ -338,7 +338,6 @@ a:-webkit-any-link {
     display: grid;
     /* flex-wrap: wrap; */
     /* justify-content: space-between; */
-    width: 65vw;
     grid-column-gap: 10px;
     grid-row-gap: 20px;
     grid-template-columns: 1fr 1fr 1fr 1fr
@@ -349,7 +348,6 @@ a:-webkit-any-link {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    width: 73vw;
 }
 
 

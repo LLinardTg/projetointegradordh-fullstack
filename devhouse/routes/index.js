@@ -12,4 +12,9 @@ router.get('/buscar', indexController.busca);
 router.get('/categoriesload', indexController.loadAllCategories);
 router.get('/produto/:codigo', indexController.loadProductById);
 
+/* GET home page. */
+router.get('/checkout', function(req, res, next) {
+  res.render('carrinho', { title: 'carrinho' });
+});
+
 module.exports = router;

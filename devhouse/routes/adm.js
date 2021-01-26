@@ -113,7 +113,7 @@ body('user').custom(async (value) => {
 ], admController.cadastrar);
 router.get('/cadastrarproduto', authadm, admController.createProduct);
 router.post('/cadastrarproduto', upload.any(), admController.storeProduct);
-router.get('/produto/:codigo', authadm, admController.loadProduct);
+router.get('/produto/:codigo', admController.loadProduct);
 router.get('/editarproduto', authadm, admController.editProduct);
 router.get('/buscarproduto', authadm, admController.searchedit);
 router.get('/deslogar', authadm, admController.deslogar);
