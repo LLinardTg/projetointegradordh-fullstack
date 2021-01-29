@@ -1,6 +1,6 @@
 module.exports = {
     username: 'root',
-    password: 'vaiplaneta',
+    password: '',
     database: 'devhousedb',
     host: '127.0.0.1',
     dialect: 'mysql'
