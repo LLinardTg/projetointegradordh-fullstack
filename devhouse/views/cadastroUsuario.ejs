@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+    <%-include('./partials/head')%>
+    <link rel="stylesheet" href="/stylesheets/loginadm.css">
+</head>
+
+<body>
+    <%-include('./partials/header')%>
+    <form id="cadastroUsuario" method="GET" action="/cadastrar">
+        <div>
+            <h2>
+                Cadastro Cliente
+            </h2>
+
+            <% if(typeof errors != 'undefined') {%>
+          
+                <ul class="error_message">
+                    <% for (var i=0;i<errors.length;i++){ %>
+                        <li><%=errors[i].msg%></li>
+                        <%}%>
+                </ul>
+                <% } %>
+
+            <label for="nomeUsuario">
+                Nome Completo
+                <input class="input_text" type="text" name="user" id="user" placeholder="Digite seu nome...">
+            </label>
+        </div>
+        </div>
+        <div class="email">
+            <label class="email" for="email">
+                E-mail
+                <input class="input_text" type="text" name="email" id="email" placeholder="Digite seu E-mail...">
+            </label>
+        </div>
+        <div class="senha">
+            <label class="email" for="email">
+                Senha
+                <input class="input_text" type="password" name="senha" id="senha" placeholder="Escolha uma senha...">
+            </label>
+        </div>
+        <div class="cpf">
+            <label class="cpf" for="cpf">
+                CPF
+                <input class="input_text" type="text" name="cpf" id="cpf" placeholder="Digite seu CPF...">
+            </label>
+        </div>
+        <div class="cep">
+            <label class="cep" for="cep">
+                CEP
+                <input class="input_text" type="text" name="cep" id="cep" placeholder="Digite seu CEP...">
+            </label>
+        </div>
+        <div class="endereco">
+            <label class="endereco" for="endereco">
+                Endereço
+                <input class="input_text" type="text" name="endereco" id="endereco" placeholder="Digite seu endereço...">
+            </label>
+        </div>
+        <div class="cidade">
+            <label class="cidade" for="cidade">
+                Cidade
+                <input class="input_text" type="text" name="cidade" id="cidade" placeholder="Digite sua Cidade...">
+            </label>
+        </div>
+        <div class="estado">
+            <label class="estado" for="estado">
+                Estado
+                <input class="input_text" type="text" name="estado" id="estado" placeholder="Digite seu Estado...">
+            </label>
+        </div>
+        <button class="btn-primary" type="submit">Cadastrar</button>
+    </form>
+    <%-include('./partials/footer')%>
+
+</body>
+
+</html>
