@@ -4,7 +4,7 @@
 <head>
 
     <%-include('./partials/head')%>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="/stylesheets/carrinho.css">
 </head>
 
@@ -44,25 +44,23 @@
                         <ul class="">
                             <li>
                                 <strong>Subtotal</strong>
-                                <div id="subtotal">R$36,00</div>
+                                <div id="subtotal">R$0,00</div>
                             </li>
                             <div class="linha"></div>
                             <li>
-                                <strong>Desconto</strong>
-                                R$0
+                                <strong>Desconto</strong> R$0
                             </li>
                             <div class="linha"></div>
                             <li>
-                                <strong>Frete</strong>
-                                R$0
+                                <strong>Frete</strong> R$0
                             </li>
                             <div class="linha"></div>
                             <li>
                                 <strong>Total</strong>
-                                <div id="total">R$36,00</div>
+                                <div id="total">R$0,00</div>
                             </li>
                         </ul>
-                        <button class="btn-secondary">Próximo Passo</button>
+                        <button class="btn-secondary" onclick="checkout()">Comprar</button>
                     </div>
                 </div>
             </div>
@@ -73,36 +71,79 @@
 
 </body>
 <script>
-    var galeria=document.querySelectorAll(".produtos-carrinho")[0]
-    function createProduct(product,tamanho,qnt){
-            var element=document.createElement("div")
-            element.classList.add("galeria_produtos")
-            var html=""
+    var galeria = document.querySelectorAll(".produtos-carrinho")[0]
 
-            html=html+'<div class="produto">'+'<div class="img-produto-carrinho">'+'<img src="'+product.imagem+'" class="img-responsive center">'+'</div>'+'<div class="infos">'+'<h4>'+ product.nome +'</h4>'+'<strong>Cor:</strong> <span>'+product.cor+'</span> <br>'
-            html=tamanho != null? html+'<strong>Tamanho:</strong> <span>'+tamanho+'</span> <br>':html
-            html=html+'</div>'+'<div class="quant">'+'<label for="">Quantidade</label>'+'<input type="number" class="form-control" min="1" value='+qnt+'>'+'</div>'+'<div class="valor">'+'<b>R$'+product.preco+',00</b>'+'</div>'+'<button class="delete"><i class="fa fa-trash-o" style="font-size:24px"></i></button>'+'</div>'+'</div>'
+    function createProduct(product, tamanho, qnt, id, codigo) {
+        var element = document.createElement("div")
+        element.classList.add("galeria_produtos")
+        var html = ""
 
-            element.innerHTML=html
-            return element
+        html = html + '<div class="produto" id=' + id + '>' + '<div class="img-produto-carrinho">' + '<img src="' + product.imagem + '" class="img-responsive center">' + '</div>' + '<div class="infos">' + '<h4>' + product.nome + '</h4>' + '<strong>Cor:</strong> <span>' + product.cor + '</span> <br>'
+        html = tamanho != null ? html + '<strong>Tamanho:</strong> <span>' + tamanho + '</span> <br>' : html
+        html = html + '</div>' + '<div class="quant">' + '<label for="">Quantidade</label>' + '<input type="number"  onchange="changeQnt("' + codigo + '","' + id + '")" class="form-control qnt" min="1" value=' + qnt + '>' + '</div>' + '<div class="valor">' + '<b>R$' + product.preco + ',00</b>' + '</div>' + '<button class="delete" onclick="deleteCart(' + "'" + codigo + "'" + "," + "'" + tamanho + "'" + "," + "'" + id + "'" + ')"><i class="fa fa-trash-o" style="font-size:24px"></i></button>' + '</div>' + '</div>'
+
+        element.innerHTML = html
+        return element
 
     }
 
-    if(localStorage.basket){
-        var total=0
+    id = 0
+    if (localStorage.basket) {
+        var total = 0
         var basket = JSON.parse(localStorage.basket)
-        for(let p of basket){
-            fetch(window.location.origin+'/adm/produto/'+p.codigo)
-            .then(res=>res.json())
-            .then(res=>{
-                var product=createProduct(res,p.tamanho?p.tamanho:null,p.qnt)
-                galeria.appendChild(product)
-                total=total+(p.qnt*res.preco)
-                document.getElementById("subtotal").innerText="R$"+total+",00"
-                document.getElementById("total").innerText="R$"+total+",00"
-            })
+        for (let p of basket) {
+
+            fetch(window.location.origin + '/adm/produto/' + p.codigo)
+                .then(res => res.json())
+                .then(res => {
+                    id = id + 1
+                    var product = createProduct(res, p.tamanho != null ? p.tamanho : null, p.qnt, id, p.codigo)
+                    galeria.appendChild(product)
+                    total = total + (p.qnt * res.preco)
+                    document.getElementById("subtotal").innerText = "R$" + total + ",00"
+                    document.getElementById("total").innerText = "R$" + total + ",00"
+                })
         }
 
+    }
+
+    function deleteCart(codigo, tamanho, id) {
+
+
+        var basket = JSON.stringify(JSON.parse(localStorage.basket).filter(b => b.codigo != codigo && b.tamanho != tamanho))
+        console.log(basket)
+        localStorage.setItem("basket", basket)
+        var total = JSON.parse(basket).map(b => b.preco * b.qnt).reduce((total, num) => total + num)
+
+        document.getElementById("subtotal").innerText = "R$" + total + ",00"
+        document.getElementById("total").innerText = "R$" + total + ",00"
+        galeria.removeChild(document.getElementById(id).parentNode)
+
+
+    }
+
+    function changeQnt(codigo, id) {
+        var qnt = document.getElementById(id).querySelector(".quant").value
+        basket = JSON.parse(localStorage.basket)
+        basket.filter(b => b.codigo == codigo).qnt = qnt
+        localStorage.setItem("basket", JSON.stringify(basket))
+        var total = basket.map(b => b.preco * b.qnt).reduce((total, num) => total + num)
+        document.getElementById("subtotal").innerText = "R$" + total + ",00"
+        document.getElementById("total").innerText = "R$" + total + ",00"
+    }
+
+    function checkout() {
+        localStorage.basket = "[]"
+        document.location.reload(true)
+        alert("Compra efetuada com sucesso!!!")
+        fetch('/checkout', {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: 'POST',
+            body: localStorage.basket
+        })
     }
 </script>
 

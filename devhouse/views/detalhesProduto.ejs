@@ -44,6 +44,7 @@
                     <hr size="8" width="100%" color="#1C2E4A">
 
                     <input type="hidden" name="codigo" value=<%=produto.codigo%>>
+                    <input type="hidden" name="price" value=<%=produto.preco%>>
                     <input type="hidden" name="temtamanho" value=<%=produto.tamanho==null?0:1%>>
 
                     <%if(produto.tamanho !=null){%>
@@ -129,33 +130,51 @@
         localStorage.getItem("basket") == null ? localStorage.setItem("basket", JSON.stringify([])) : null
         var basket = JSON.parse(localStorage.getItem("basket"))
         var codigo = $("input[name='codigo']").val()
+        var preco = $("input[name='price']").val()
         var qnt = $("input[name='quantidade']").val() != "0" ? Number($("input[name='quantidade']").val()) : alert("Adicionar a quantidade")
         if ($("input[name='temtamanho']").val() == "1") {
             var tamanho = $("input[name='tamanho']:checked").val() ? $("input[name='tamanho']:checked").val() : alert("Adicionar o tamanho")
 
             if (tamanho && qnt) {
-                basket.push({
-                    codigo: codigo,
-                    tamanho: tamanho,
-                    qnt: qnt
-                })
+                if (basket.filter(b => b.codigo == codigo && b.tamanho == tamanho).length != 0) {
+                    basket.find(b => b.codigo == codigo && b.tamanho == tamanho).qnt = basket.find(b => b.codigo == codigo && b.tamanho == tamanho).qnt + qnt
+                } else {
+                    basket.push({
+                        codigo: codigo,
+                        tamanho: tamanho,
+                        qnt: qnt,
+                        preco: preco
+                    })
+
+                }
+
+
                 localStorage.setItem("basket", JSON.stringify(basket))
                 $('#modal').modal('show')
             }
         } else {
             if (qnt) {
-                basket.push({
-                    codigo: codigo,
-                    qnt: qnt
-                })
+                if (basket.filter(b => b.codigo == codigo).length != 0) {
+                    console.log(basket)
+                    basket.find(b => b.codigo == codigo).qnt = basket.find(b => b.codigo == codigo).qnt + qnt
+                } else {
+                    basket.push({
+                        codigo: codigo,
+                        qnt: qnt,
+                        tamanho: null,
+                        preco: preco
+                    })
+                }
+
                 localStorage.setItem("basket", JSON.stringify(basket))
                 $('#modal').modal('show')
 
+
+
+
             }
 
-
         }
-
     }
 </script>
 

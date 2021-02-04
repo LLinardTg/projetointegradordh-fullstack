@@ -19,7 +19,7 @@
                 <div class="col">
                     <h3>Foto</h3>
                     <img id='img_insert' src="<%=produto.imagem%>">
-                    <input type="hidden" id="imagefile" name="image" value="<%=produto.imagem%>">
+                    <input type="hidden" id="imagefile" name="image" value="<%=produto.imagem%>" onchange="showPreview(event)">
                     <input type="hidden" name="id" value="<%=produto.idprodutos%>">
                     <div class="custom-file">
                         <input type="file" class="custom-file-input" id="validatedCustomFile" lang="pt" name='img' onchange="onChangeImage();">
@@ -90,6 +90,16 @@
         <%-include('./partials/footer')%>
 </body>
 <script>
+    const showPreview = (e) => {
+        const fileReader = new FileReader();
+        fileReader.onload = () => {
+            let preview = document.querySelector(".img-preview");
+            preview.src = fileReader.result;
+        };
+        fileReader.readAsDataURL(e.target.files[0]);
+    };
+
+
     function back() {
         window.location.href = sessionStorage.getItem("page")
     }
