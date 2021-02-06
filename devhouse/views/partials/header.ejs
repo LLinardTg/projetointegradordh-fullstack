@@ -4,8 +4,7 @@
         <a href="/"><img id="logo" src="/images/logo.png"></a>
         <div class="header_menu">
             <ul id="nav">
-                <li id="topmenu"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-list-ul"
-                        fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <li id="topmenu"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-list-ul" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd"
                             d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm-3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
                     </svg>
@@ -16,8 +15,8 @@
     </div>
     <div class='header_group search'>
         <form action="/buscar" method="get">
-        <input class="input_text" type="text" id="barra-procurar" name="q" placeholder="O QUE PROCURA?">
-        <button type="submit" id="btn-search"><svg id="search" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-search"
+            <input class="input_text" type="text" id="barra-procurar" name="q" placeholder="O QUE PROCURA?">
+            <button type="submit" id="btn-search"><svg id="search" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-search"
                 fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd"
                     d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z" />
@@ -29,8 +28,7 @@
     <div class='header_group cadastro'>
 
         <div class="header_cadastro">
-            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                aria-expanded="false">
+            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person-fill" fill="currentColor"
                     xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd"
@@ -39,70 +37,88 @@
                 Minha Conta
             </button>
             <div class="dropdown-menu">
-                <a href="/cadastrar"><button class="dropdown-item" type="button">Cadastrar</button></a>
-                <a href="/login"><button class="dropdown-item" type="button">Login</button></a>
+                <a href="/users/cadastrar"><button class="dropdown-item usernotlogged" type="button">Cadastrar</button></a>
+                <a href="/users/login"><button class="dropdown-item usernotlogged" type="button">Login</button></a>
+                <a href="/users/logout"><button class="dropdown-item userlogged" onclick="logout()" type="button" >Sair</button></a>
             </div>
         </div>
 
         <a href="/checkout"><img id="carrinho" src="/images/carrinho.png"></a>
-<span class='badge badge-warning' id='lblCartCount'> 5 </span>
+        <span class='badge badge-warning' id='lblCartCount'> 5 </span>
 
 
     </div>
 
 </header>
 <script>
-    var labelCart= document.getElementById('lblCartCount')
-    
-    var basketItems=localStorage.getItem("basket")==null?null:JSON.parse(localStorage.getItem("basket")).length
-    basketItems==null?labelCart.style.display="none":labelCart.innerHTML=basketItems
+    if (localStorage.user) {
+        for (let el of document.querySelectorAll('.usernotlogged')) {
+            el.style.display = "none"
+        }
+        for (let el of document.querySelectorAll('.userlogged')) {
+            el.style.display = ""
+        }
+    } else {
+        for (let el of document.querySelectorAll('.userlogged')) {
+            el.style.display = "none"
+        }
+        for (let el of document.querySelectorAll('.usernotlogged')) {
+            el.style.display = ""
+        }
+    }
+
+    function logout() {
+        localStorage.removeItem("user")
+    }
+
+    var labelCart = document.getElementById('lblCartCount')
+
+    var basketItems = localStorage.getItem("basket") == null ? null : JSON.parse(localStorage.getItem("basket")).length
+    basketItems == null ? labelCart.style.display = "none" : labelCart.innerHTML = basketItems
     var divList = '<ul class="submenu"><li><a href="/produtos">Todos os Produtos</a></li>'
-    
-        fetch('/categoriesload',{
+
+    fetch('/categoriesload', {
             method: 'GET',
         })
-        .then(res=>res.json())
-        .then(res=>{
-                console.log(res)
-                var categorias = [... new Set(res.map(c => c.categoria))]
-                categorias.forEach(cat => {
-                    divList = divList + '<li><a href="' + window.location.origin + '/produtos/' + cat + '">' + cat + ' </a><ul class="submenu">'
-                    var subcategorias = res.filter(c => c.categoria == cat).map(c => c.subcategoria)
-                    subcategorias.forEach(sub => {
-                        divList = divList + '<li><a href="' + window.location.origin + '/produtos/' + cat + '/' + sub + '">' + sub + '</a></li>'
-                    })
-                    divList = divList + '</ul></li>'
-                });
+        .then(res => res.json())
+        .then(res => {
+            console.log(res)
+            var categorias = [...new Set(res.map(c => c.categoria))]
+            categorias.forEach(cat => {
+                divList = divList + '<li><a href="' + window.location.origin + '/produtos/' + cat + '">' + cat + ' </a><ul class="submenu">'
+                var subcategorias = res.filter(c => c.categoria == cat).map(c => c.subcategoria)
+                subcategorias.forEach(sub => {
+                    divList = divList + '<li><a href="' + window.location.origin + '/produtos/' + cat + '/' + sub + '">' + sub + '</a></li>'
+                })
+                divList = divList + '</ul></li>'
+            });
 
-                divList=divList+'</ul>'
-                $('#topmenu').append(divList)
-            })
-        .catch(error=>console.log(error))
-    
-        // $.ajax(
-        // {
-        //     type: 'GET',
-        //     url: '/categoriesload',
-        //     dataType: 'json',
-        //     contentType: 'application/json; charset=utf-8',
-        //     success: res => {
-        //         console.log(res)
-        //         var categorias = [... new Set(res.map(c => c.categoria))]
-        //         categorias.forEach(cat => {
-        //             divList = divList + '<li><a href="' + window.location.origin + '/produtos/' + cat + '">' + cat + ' </a><ul class="submenu">'
-        //             var subcategorias = res.filter(c => c.categoria == cat).map(c => c.subcategoria)
-        //             subcategorias.forEach(sub => {
-        //                 divList = divList + '<li><a href="' + window.location.origin + '/produtos/' + cat + '/' + sub + '">' + sub + '</a></li>'
-        //             })
-        //             divList = divList + '</ul></li>'
-        //         });
+            divList = divList + '</ul>'
+            $('#topmenu').append(divList)
+        })
+        .catch(error => console.log(error))
 
-        //         divList=divList+'</ul>'
-        //         $('#topmenu').append(divList)
-        //     },
-        //     error: error => console.log(error)
-        // })
+    // $.ajax(
+    // {
+    //     type: 'GET',
+    //     url: '/categoriesload',
+    //     dataType: 'json',
+    //     contentType: 'application/json; charset=utf-8',
+    //     success: res => {
+    //         console.log(res)
+    //         var categorias = [... new Set(res.map(c => c.categoria))]
+    //         categorias.forEach(cat => {
+    //             divList = divList + '<li><a href="' + window.location.origin + '/produtos/' + cat + '">' + cat + ' </a><ul class="submenu">'
+    //             var subcategorias = res.filter(c => c.categoria == cat).map(c => c.subcategoria)
+    //             subcategorias.forEach(sub => {
+    //                 divList = divList + '<li><a href="' + window.location.origin + '/produtos/' + cat + '/' + sub + '">' + sub + '</a></li>'
+    //             })
+    //             divList = divList + '</ul></li>'
+    //         });
 
-
-
+    //         divList=divList+'</ul>'
+    //         $('#topmenu').append(divList)
+    //     },
+    //     error: error => console.log(error)
+    // })
 </script>

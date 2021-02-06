@@ -5,39 +5,31 @@ module.exports = (sequelize, DataTypes) => {
             primaryKey: true,
             autoIncrement: true
         },
-        Nome: {
+        nome: {
             type: DataTypes.STRING,
             allowNull: false
         },
-        Telefone: {
+        telefone: {
             type: DataTypes.INTEGER,
             allowNull: false
         },
-        Endereco: {
+        endereco: {
             type: DataTypes.TEXT,
             allowNull: false
         },
-        Email: {
+        email: {
             type: DataTypes.STRING,
             allowNull: false
         },
-        Senha: {
+        senha: {
             type: DataTypes.STRING(256),
             allowNull: false
         },
-        Cpf: {
+        cpf: {
             type: DataTypes.INTEGER,
             allowNull: false
         },
-        DataNasc: {
-            type: DataTypes.DATEONLY,
-            allowNull: false
-        },
-        sexo: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-        Cep: {
+        cep: {
             type: DataTypes.INTEGER,
             allowNull: false
         },

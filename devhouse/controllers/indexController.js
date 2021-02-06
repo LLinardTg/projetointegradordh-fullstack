@@ -1,4 +1,4 @@
-const { sequelize, Produto, Categoria, Pedido } = require('../models');
+const { sequelize, Produto, Categoria, Pedido, Cliente } = require('../models');
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op
 
@@ -215,15 +215,20 @@ indexController = {
         res.render('detalhesProduto', infos)
     },
     checkout: async(req, res) => {
-        var basket = req.body
+        var { basket, user } = req.body
         console.log(basket)
+        var cliente = await Cliente.findOne({
+            where: {
+                email: user
+            }
+        })
         var frete = 0
         var pedido = await Pedido.create({
             total: basket.map(b => b.preco * b.qnt).reduce((total, num) => total + num) + frete,
             data: new Date(),
             frete: frete,
             status: "em andamento",
-            idclientes: 1
+            idclientes: cliente.dataValues.idclientes
         })
 
     }

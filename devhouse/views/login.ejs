@@ -4,46 +4,54 @@
 <head>
 
     <%-include('./partials/head')%>
-    <link rel="stylesheet" href="/stylesheets/loginadm.css">
+        <link rel="stylesheet" href="/stylesheets/loginadm.css">
 </head>
 
 <body>
     <%-include('./partials/header')%>
-    <form id="form-login" method="POST" action="/login">
-        <div>
-            <h2>
-                Login do Cliente
-            </h2>
+        <form id="form-login" method="POST" action="/users/login">
+            <div>
+                <h2>
+                    Login do Cliente
+                </h2>
 
-            <% if(typeof errors != 'undefined') {%>
-          
-                <ul class="error_message">
-                    <% for (var i=0;i<errors.length;i++){ %>
-                        <li><%=errors[i].msg%></li>
-                        <%}%>
-                </ul>
-                <% } %>
+                <% if(typeof errors != 'undefined') {%>
 
-            <label for="user">
-                Usuário
+                    <ul class="error_message">
+                        <% for (var i=0;i<errors.length;i++){ %>
+                            <li>
+                                <%=errors[i].msg%>
+                            </li>
+                            <%}%>
+                    </ul>
+                    <% } %>
+
+                        <label for="user">
+                Email
                 <input class="input_text" type="text" name="user" id="user" placeholder="Digite seu usuario...">
             </label>
-        </div>
-        <div class="senha">
-            <label class="senha" for="senha">
+            </div>
+            <div class="senha">
+                <label class="senha" for="senha">
                 Senha
                 <input class="input_text" type="password" name="senha" id="senha" placeholder="Digite sua senha...">
             </label>
-        </div>
-        <div class="esqueceu">
-            <label>
+            </div>
+            <div class="esqueceu">
+                <label>
                 <a class="esqueceu" href="#">Esqueceu a senha?</a>
             </label>
-        </div>
+            </div>
             <button class="btn-primary" type="submit">Entrar</button>
-    </form>
-    <%-include('./partials/footer')%>
+        </form>
+        <%-include('./partials/footer')%>
 
 </body>
+
+<script>
+    document.getElementById("form-login").addEventListener("submit", () => {
+        localStorage.setItem("user", document.getElementById("user").value)
+    })
+</script>
 
 </html>

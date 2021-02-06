@@ -80,7 +80,7 @@
 
         html = html + '<div class="produto" id=' + id + '>' + '<div class="img-produto-carrinho">' + '<img src="' + product.imagem + '" class="img-responsive center">' + '</div>' + '<div class="infos">' + '<h4>' + product.nome + '</h4>' + '<strong>Cor:</strong> <span>' + product.cor + '</span> <br>'
         html = tamanho != null ? html + '<strong>Tamanho:</strong> <span>' + tamanho + '</span> <br>' : html
-        html = html + '</div>' + '<div class="quant">' + '<label for="">Quantidade</label>' + '<input type="number"  onchange="changeQnt(event,' + "'" + codigo + "'" + "," + "'" + id + "'" + ')" class="form-control qnt" min="1" value=' + qnt + '>' + '</div>' + '<div class="valor">' + '<b>R$' + product.preco + ',00</b>' + '</div>' + '<button class="delete" onclick="deleteCart(' + "'" + codigo + "'" + "," + "'" + tamanho + "'" + "," + "'" + id + "'" + ')"><i class="fa fa-trash-o" style="font-size:24px"></i></button>' + '</div>' + '</div>'
+        html = html + '</div>' + '<div class="quant">' + '<label for="">Quantidade</label>' + '<input type="number"  onchange="changeQnt(event,' + "'" + codigo + "'" + "," + "'" + id + "'" + ')" class="form-control qnt" min="1" value=' + qnt + '>' + '</div>' + '<div class="valor">' + '<b>R$' + product.preco + ',00</b>' + '</div>' + '<button class="delete" onclick="deleteCart(' + "'" + codigo + "'" + "," + "'" + tamanho + "'" + "," + "'" + id + "'" + ')"><i class="fas fa-trash-o" style="font-size:24px"></i></button>' + '</div>' + '</div>'
 
         element.innerHTML = html
         return element
@@ -134,17 +134,28 @@
     }
 
     function checkout() {
-        localStorage.basket = "[]"
-        document.location.reload(true)
-        alert("Compra efetuada com sucesso!!!")
-        fetch('/checkout', {
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            method: 'POST',
-            body: localStorage.basket
-        })
+        if (localStorage.user) {
+
+
+            fetch('/checkout', {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                method: 'POST',
+                body: JSON.stringify({
+                    basket: JSON.parse(localStorage.basket),
+                    user: localStorage.user
+                })
+            })
+            alert("Compra efetuada com sucesso!!!")
+            localStorage.basket = "[]"
+            document.location.reload(true)
+        } else {
+
+            alert("Efetue o login")
+            location.href = "/users/login"
+        }
     }
 </script>
 
