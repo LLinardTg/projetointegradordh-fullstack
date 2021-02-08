@@ -10,7 +10,8 @@
     <%-include('./partials/header')%>
         <main>
             <div class="head_cadastro">
-                <button class="button-back" onclick="back()"><i class="fa fa-arrow-left" style="font-size:35px;color:#FFFF05"></i></button>
+                <button class="button-back" onclick="back()"><i class="fa fa-arrow-left"
+                        style="font-size:35px;color:#FFFF05"></i></button>
                 <h1>CADASTRO DE PRODUTO</h1>
 
             </div>
@@ -20,81 +21,99 @@
                     <img id='img_insert' src="/images/image_empty.png">
                     <input type="hidden" id="imagefile" name="image">
                     <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="validatedCustomFile" lang="pt" name='img' onchange="onChangeImage();" required>
-                        <label id="labelimage" class="custom-file-label" for="validatedCustomFile">Clique para selecione nova imagem</label>
+                        <input type="file" class="custom-file-input" id="validatedCustomFile" lang="pt" name='img'
+                            onchange="onChangeImage(event);" required>
+                        <label id="labelimage" class="custom-file-label" for="validatedCustomFile">Clique para selecione
+                            nova imagem</label>
                         <div class="invalid-feedback">Example invalid custom file feedback</div>
                     </div>
                 </div>
                 <div class="col">
                     <h3>Código</h3>
                     <div class="row">
-                        <input class="input_text" type="text" name="codigo" id="codigoinput" placeholder="Digite o código">
+                        <input class="input_text" type="text" name="codigo" id="codigoinput"
+                            placeholder="Digite o código">
                         <article>ou</article>
-                        <select class="selectpicker" name="codigo" id="codigo" onchange="getSelectValue();" data-live-search="true">
-                    <option value="" disabled selected>Escolha um código </option>
-                    <% codigo.forEach( (cod)=>{  %>
-                    <option value="<%= cod %>"><%= cod %></option>
-                    <% }) %>
-                </select>
+                        <select class="selectpicker" name="codigo" id="codigo" onchange="getSelectValue();"
+                            data-live-search="true">
+                            <option value="" disabled selected>Escolha um código </option>
+                            <% codigo.forEach( (cod)=>{ %>
+                                <option value="<%= cod %>">
+                                    <%= cod %>
+                                </option>
+                                <% }) %>
+                        </select>
                     </div>
                     <h3>Nome do produto</h3>
                     <input class="input_text" type="text" name="nome" id="nome" placeholder="Digite o nome do produto">
                     <h3>Preço</h3>
-                    <input class="input_text" type="number" name="preco" id="preco" step="0.01" placeholder="Digite o preco">
+                    <input class="input_text" type="number" name="preco" id="preco" step="0.01"
+                        placeholder="Digite o preco">
                     <h3>Quantidade</h3>
-                    <input class="input_text" type="number" name="quantidade" id="quantidade" placeholder="Digite a quantidade">
+                    <input class="input_text" type="number" name="quantidade" id="quantidade"
+                        placeholder="Digite a quantidade">
                     <h3>Descrição</h3>
-                    <textarea class="input_text" rows="5" style="height: 100%;" id="description" name="description"></textarea>
+                    <textarea class="input_text" rows="5" style="height: 100%;" id="description"
+                        name="description"></textarea>
                     <h3>Tamanho</h3>
                     <label>
-                <input type="radio" name="tamanho" value="PP">
-                <label for="tamanho">PP</label>
-                    <input type="radio" name="tamanho" value="P">
-                    <label for="tamanho">P</label>
-                    <input type="radio" name="tamanho" value="M">
-                    <label for="tamanho">M</label>
-                    <input type="radio" name="tamanho" value="G">
-                    <label for="tamanho">G</label>
-                    <input type="radio" name="tamanho" value="GG">
-                    <label for="tamanho">GG</label>
-                    <input type="radio" name="tamanho" value="NULL">
-                    <label for="tamanho">Não se aplica</label>
+                        <input type="radio" name="tamanho" value="PP">
+                        <label for="tamanho">PP</label>
+                        <input type="radio" name="tamanho" value="P">
+                        <label for="tamanho">P</label>
+                        <input type="radio" name="tamanho" value="M">
+                        <label for="tamanho">M</label>
+                        <input type="radio" name="tamanho" value="G">
+                        <label for="tamanho">G</label>
+                        <input type="radio" name="tamanho" value="GG">
+                        <label for="tamanho">GG</label>
+                        <input type="radio" name="tamanho" value="NULL">
+                        <label for="tamanho">Não se aplica</label>
                     </label>
                     <h3>Cor</h3>
                     <div class="row">
                         <div class="color_picker">
                             <input id="input_color" name="hexcolor" type="color">
-                            <input class="input_text" type="text" name="colorname" id="colorname" placeholder="De um nome para essa cor">
+                            <input class="input_text" type="text" name="colorname" id="colorname"
+                                placeholder="De um nome para essa cor">
                         </div>
                         <article>ou</article>
                         <select class="selectpicker" name="colorname" data-live-search="true">
-                    <option value="" disabled selected>Escolha uma cor</option>
-                    <% cor.forEach( (c)=>{ %>
-                    <option style="background: <%=c.hexcolor%>; color: #c6c6c6"><%=c.color%></option>
-                    <% })%>
-                </select>
+                            <option value="" disabled selected>Escolha uma cor</option>
+                            <% cor.forEach( (c)=>{ %>
+                                <option style="background: <%=c.hexcolor%>; color: #c6c6c6">
+                                    <%=c.color%>
+                                </option>
+                                <% })%>
+                        </select>
                     </div>
                     <h3>Categoria</h3>
                     <div class="row">
                         <select class="selectpicker" name="categoria" data-live-search="true">
-                    <option value="" disabled selected>Escolha uma categoria</option>
-                    <% categorias.forEach( (cat)=>{  %>
-                        <option value="<%= cat %>"><%= cat %></option>
-                        <% }) %>
-                </select>
+                            <option value="" disabled selected>Escolha uma categoria</option>
+                            <% categorias.forEach( (cat)=>{ %>
+                                <option value="<%= cat %>">
+                                    <%= cat %>
+                                </option>
+                                <% }) %>
+                        </select>
                         <article>ou</article>
-                        <input class="input_text" type="text" name="categoria" placeholder="Escreva uma nova categoria" id="categoria">
+                        <input class="input_text" type="text" name="categoria" placeholder="Escreva uma nova categoria"
+                            id="categoria">
                     </div>
                     <h3>Subcategoria</h3>
                     <div class="row">
                         <select class="selectpicker" name="subcategoria" data-live-search="true">
-                    <option value="" disabled selected>Escolha uma subcategoria</option>
-                    <% subcategorias.forEach( (cat)=>{  %>
-                        <option value="<%= cat %>"><%= cat %></option>
-                        <% }) %>
-                </select>
+                            <option value="" disabled selected>Escolha uma subcategoria</option>
+                            <% subcategorias.forEach( (cat)=>{ %>
+                                <option value="<%= cat %>">
+                                    <%= cat %>
+                                </option>
+                                <% }) %>
+                        </select>
                         <article>ou</article>
-                        <input class="input_text" type="text" name="subcategoria" id="subcategoria" placeholder="Escreva uma nova categoria">
+                        <input class="input_text" type="text" name="subcategoria" id="subcategoria"
+                            placeholder="Escreva uma nova categoria">
                     </div>
                     <button class="btn-primary" type="submit">Salvar</button>
                 </div>
@@ -106,16 +125,27 @@
         <%-include('./partials/footer')%>
 </body>
 <script>
+
+
+
     function back() {
         window.location.href = window.location.origin + "/adm"
     }
 
-    function onChangeImage() {
+    function onChangeImage(event) {
+        const fileReader = new FileReader();
+        fileReader.onload = () => {
+            let preview = document.querySelector("#img_insert");
+            preview.src = fileReader.result;
+        };
+        fileReader.readAsDataURL(event.target.files[0]);
+
         var filename = document.getElementById("validatedCustomFile").value.split('\\')[document.getElementById("validatedCustomFile").value.split('\\').length - 1]
-        var file = '/images/produtos/' + filename
-        document.getElementById("img_insert").src = file
+        // var file = '/images/produtos/' + filename
+        // document.getElementById("img_insert").src = file
         document.getElementById("labelimage").innerHTML = filename
         document.getElementById("imagefile").value = filename
+
 
     }
 
