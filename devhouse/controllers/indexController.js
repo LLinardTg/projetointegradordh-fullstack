@@ -1,4 +1,4 @@
-const { sequelize, Produto, Categoria, Pedido, Cliente } = require('../models');
+const { sequelize, Produto, Categoria, Pedido, Cliente, Pedidoproduto} = require('../models');
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op
 
@@ -60,6 +60,9 @@ indexController = {
                 } : {
                     [Op.ne]: 'a'
                 },
+                quantidade: {
+                    [Op.gt]: 0
+                }
             },
             attributes: ['nome', 'preco', 'imagem', 'codigo'],
             group: ['nome', 'preco', 'imagem', 'codigo', 'id_produtos_categorias'],
@@ -133,7 +136,10 @@ indexController = {
                     "tamanho": {
                         [Op.substring]: query
                     }
-                }]
+                }],
+                quantidade: {
+                    [Op.gt]: 0
+                }
             },
             attributes: ['nome', 'preco', 'imagem', 'codigo'],
             group: ['nome', 'preco', 'imagem', 'codigo', 'id_produtos_categorias'],
@@ -230,6 +236,33 @@ indexController = {
             status: "em andamento",
             idclientes: cliente.dataValues.idclientes
         })
+        for (let b of basket){
+
+            var produto = await Produto.findOne({
+                where:{
+                    codigo: b.codigo,
+                    tamanho:b.tamanho
+                }
+            })
+            console.log(b.quantidade)
+            var quantidade = produto.dataValues.quantidade-b.qnt
+
+            await Produto.update(
+                {
+                    quantidade: quantidade
+                },
+                {
+                    where:{
+                        idprodutos: produto.dataValues.idprodutos
+                    }
+                }
+            )
+            await Pedidoproduto.create({
+                idpedidos:pedido.idpedidos,
+                idprodutos:produto.dataValues.idprodutos
+            })
+        }
+
 
     }
 

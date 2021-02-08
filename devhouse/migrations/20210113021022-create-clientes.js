@@ -20,7 +20,7 @@ module.exports = {
                 allowNull: false
             },
             telefone: {
-                type: Sequelize.INTEGER,
+                type: Sequelize.BIGINT,
                 allowNull: false
             },
             endereco: {
@@ -36,7 +36,7 @@ module.exports = {
                 allowNull: false
             },
             cpf: {
-                type: Sequelize.INTEGER,
+                type: Sequelize.BIGINT,
                 allowNull: false
             },
             cep: {

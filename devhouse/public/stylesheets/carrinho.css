@@ -150,11 +150,10 @@ body{
         height: auto;
     }
 }
-
 .galeria_produtos{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    /* justify-content: space-between; */
    margin: 20px;
    background-color: #EBEBEB;
 
@@ -163,8 +162,14 @@ body{
 
 .produto{
     display: flex;
-   margin: 20px
+   margin: 20px;
+   width: 100%;
     
+}
+ 
+.produto img{
+    width: 14vw;
+
 }
 
 .produtos-carrinho{
@@ -175,4 +180,84 @@ body{
 .delete{
     border:none;
     background-color: transparent;
+    height: 10px;
+}
+
+.infos{
+    padding: 1px 15px;
+    font-size: 0.8em;
+}
+
+.quant {
+    padding: 1px 18px;
+    width: 12vw;
+}
+
+.valor{
+    padding: 1px 18px;
+    text-align: center;
+}
+
+.produto_description{
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin: auto
+}
+
+.sub-tutorial {
+    border-top: 3px solid #FFFF05;
+    background: #1C2E4A;
+    height: 100%;
+    width: 30vw;
+    display: inline-block;
+    /* position: relative; */
+}
+
+
+.resumo-compra h4 {
+    text-align: center;
+    font-weight: 700;
+    padding: 20px 0;
+}
+
+.linha {
+    width: 100%;
+    height: 1px;
+    background: #ccc;
+}
+
+.resumo-compra ul {
+    list-style-type: none;
+    padding: 0 !important;
+}
+
+.resumo-compra ul li {
+    padding-top: 15px;
+    padding-left: 5px;
+    padding-right: 5px;
+    display: flex;
+    justify-content: space-between;
+    color: #EBEBEB;
+}
+
+.btn-secondary{
+    width: 100%;
+    margin:auto;
+    align-items: center;
+    text-align: center;
+}
+
+.btn-cart {
+    background: #007ef9;
+    color: #fff;
+    padding: 10px 0;
+}
+
+.btn-cart:hover {
+    color: #fff !important;
+}
+
+.no-paddin {
+    padding: 0 !important;
 }

@@ -49,7 +49,7 @@ h1{
 	display: none;
 }
 
-#form-login label div:not(.esqueceu){
+/* #form-login label div:not(.esqueceu){
 	width: 100%;
 	display: block;
 	font-size: 1rem;
@@ -61,7 +61,7 @@ h1{
 	bottom: 0;
 	cursor: pointer;
 	text-align: center;
-}
+} */
 
 #form-login .controles{
 	width: 100%;
@@ -86,8 +86,11 @@ h1{
 }
 
 .esqueceu{
-	text-align: right;
+	display: flex;
+	justify-content: space-between;
+	padding: 5px 0px;
 }
+
 
 a:link 
 { 
